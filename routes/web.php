@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AtendimentoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -8,9 +9,9 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| Aqui é onde você pode registrar as rotas web para a sua aplicação.
+| Essas rotas são carregadas pelo RouteServiceProvider e todas elas
+| serão atribuídas ao grupo de middleware "web". Vamos lá!
 |
 */
 
@@ -18,14 +19,41 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Rota para a dashboard
+Route::get('/dashboard', [AtendimentoController::class, 'listarAtendimentos'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::get('/privacy-policy', function () {
+    // Lógica para exibir a página de Política de Privacidade
+    return view('privacidade');
+})->name('privacy.policy');
+
+Route::get('/psi', function () {
+    // Lógica para exibir a página de PSI
+    return view('psi');
+})->name('psi.policy');
+
+// Termos de uso
+Route::get('/terms', [App\Http\Controllers\TermsController::class, 'show'])->name('terms.show');
+Route::post('/terms', [App\Http\Controllers\TermsController::class, 'accept'])->name('terms.accept');
+Route::post('/terms-decline', [App\Http\Controllers\TermsController::class, 'declineTerms'])->name('terms.declineTerms');
+
+
+Route::middleware('auth', 'terms.accepted')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/dashboard', [AtendimentoController::class, 'listarAtendimentos'])->name('dashboard');
+    
+
+    // Rotas para exibir e salvar dados do formulário
+    Route::post('/salvar-dados', [AtendimentoController::class, 'salvarDados'])->name('SalvarDados');
+    Route::get('/formprimario', [AtendimentoController::class, 'renderizarView'])->name('formprimario');
+    Route::post('/encaminhar', [AtendimentoController::class, 'encaminhar'])->name('encaminhar');
+    Route::post('/atendimentos/{id}/edit', [AtendimentoController::class, 'edit'])->name('edit');
+
 });
 
 require __DIR__.'/auth.php';

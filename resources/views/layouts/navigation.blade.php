@@ -10,12 +10,7 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -23,7 +18,10 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <div>
                             <div>{{ Auth::user()->name }}</div>
+                            <div class="text-xs text-gray-500 text-right">{{ Auth::user()->attention_type }}</div> <!-- Use o campo 'attention_type' para exibir a atenção escolhida -->
+                        </div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -34,18 +32,28 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                        <x-dropdown-link :href="route('profile.edit')" class="dropdown-link">
+                            {{ __('Perfil') }}
+                        </x-dropdown-link>
+
+                        <!-- Link para Política de Privacidade -->
+                        <x-dropdown-link :href="route('privacy.policy')" class="dropdown-link" target="_blank">
+                            {{ __('Política de Privacidade') }}
+                        </x-dropdown-link>
+
+                        <!-- Link para PSI -->
+                        <x-dropdown-link :href="route('psi.policy')" class="dropdown-link" target="_blank">
+                            {{ __('PSI') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
+                            <x-dropdown-link :href="route('logout')" class="dropdown-link"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Sair') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -98,3 +106,16 @@
         </div>
     </div>
 </nav>
+
+
+<style>
+    .dropdown-link {
+    color: inherit;
+    text-decoration: none;    
+    }
+
+    .dropdown-link:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+</style>
