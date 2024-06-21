@@ -1,54 +1,54 @@
 <div class="border-b border-gray-300 mb-6">
 <h2 class="text-lg font-bold mb-2">Informações</h2>
 
-<div class="grid grid-cols-2 gap-4">
-    <div class="mb-4">
-    <label class="block text-sm font-bold" for="nome">Nome:</label>
-    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="nome" id="nome" type="text" placeholder="Digite seu nome">
-    </div>
-    <div class="mb-4">
-        <label class="block text-sm font-bold" for="idade">Idade:</label>
-        <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="idade" id="idade" type="text" placeholder="Digite sua idade">
-    </div>
-    <div class="mb-4">
-    <label class="block text-sm font-bold">Sexo:</label>
-    <div class="flex">
-        <label class="inline-flex items-center mr-4">
-        <input id="masculino" type="radio" class="form-radio h-5 w-5 text-blue-500" name="sexo" value="masculino" onfocus="this.blur()">
-        <span class="ml-2">Masculino</span>
-        </label>
-        <label class="inline-flex items-center">
-        <input id="feminino" type="radio" class="form-radio h-5 w-5 text-pink-500" name="sexo" value="feminino" onfocus="this.blur()">
-        <span class="ml-2">Feminino</span>
-        </label>
-    </div>
-    </div>
-    <div class="mb-4">
-    <label class="block text-sm font-bold" for="contato">Contato:</label>
-    <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field" name="contato" id="contato" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Digite seu contato">
-    </div>
-    <div class="mb-4">
-    <label class="block text-sm font-bold" for="data_nascimento">Data de Nascimento:</label>
-    <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-    name="data_nascimento" id="data-nascimento" type="date" placeholder="DD/MM/AAAA" required>
-    </div>
-    <div class="mb-4">
-    <label class="block text-sm font-bold" for="cartao_sus">Número de Cartão SUS:</label>
-    <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"  
-    name="cartao_sus" id="cartao-sus" type="number" placeholder="Digite o número do cartão SUS" maxlength="15" required>
-    </div>
-    <div class="mb-4">
-    <label class="block text-sm font-bold" for="endereco">Endereço:</label>
-    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="endereco" id="endereco" type="text" placeholder="Digite seu endereço">
-    </div>
-    <div class="mb-4">
-    <label class="block text-sm font-bold" for="data_cadastro">Data de Cadastro:</label>
-    <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-    name="data_cadastro" id="data-cadastro" type="date" placeholder="DD/MM/AAAA" required>
-    </div>
+    <div class="grid grid-cols-2 gap-4">
+        <div class="mb-4">
+        <label class="block text-sm font-bold" for="nome">Nome:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="nome" id="nome" type="text" placeholder="Digite seu nome">
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-bold" for="idade">Idade:</label>
+            <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="idade" id="idade" type="text" placeholder="Digite sua idade">
+        </div>
+        <div class="mb-4">
+        <label class="block text-sm font-bold">Sexo:</label>
+        <div class="flex">
+            <label class="inline-flex items-center mr-4">
+            <input id="masculino" type="radio" class="form-radio h-5 w-5 text-blue-500" name="sexo" value="masculino" onfocus="this.blur()">
+            <span class="ml-2">Masculino</span>
+            </label>
+            <label class="inline-flex items-center">
+            <input id="feminino" type="radio" class="form-radio h-5 w-5 text-pink-500" name="sexo" value="feminino" onfocus="this.blur()">
+            <span class="ml-2">Feminino</span>
+            </label>
+        </div>
+        </div>
+        <div class="mb-4">
+        <label class="block text-sm font-bold" for="contato">Contato:</label>
+        <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field" name="contato" id="contato" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Digite seu contato">
+        </div>
+        <div class="mb-4">
+        <label class="block text-sm font-bold" for="data_nascimento">Data de Nascimento:</label>
+        <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        name="data_nascimento" id="data-nascimento" type="date" placeholder="DD/MM/AAAA" required>
+        </div>
+        <div class="mb-4">
+        <label class="block text-sm font-bold" for="cartao_sus">Número de Cartão SUS:</label>
+        <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"
+        name="cartao_sus" id="cartao-sus" type="number" placeholder="Digite o número do cartão SUS" maxlength="15" required>
+        </div>
+        <div class="mb-4">
+        <label class="block text-sm font-bold" for="endereco">Endereço:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="endereco" id="endereco" type="text" placeholder="Digite seu endereço">
+        </div>
+        <div class="mb-4">
+        <label class="block text-sm font-bold" for="data_cadastro">Data de Cadastro:</label>
+        <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        name="data_cadastro" id="data-cadastro" type="date" placeholder="DD/MM/AAAA" required>
+        </div>
 
 
-</div>
+    </div>
 
 </div>
 
@@ -62,7 +62,7 @@
     </div>
     <div class="mb-4">
     <label class="block text-sm font-bold" for="acs">ACS responsável:</label>
-    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
     name="acs" id="acs" type="text" placeholder="Digite o nome do ACS responsável">
     </div>
 </div>
@@ -86,7 +86,7 @@
     </div>
     <div class="mb-4">
     <label class="block text-sm font-bold" for="medico_responsavel">Médico responsável:</label>
-    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
     name="medico_responsavel" id="medico-responsavel" type="text" placeholder="Digite o nome do médico responsável">
     </div>
 </div>

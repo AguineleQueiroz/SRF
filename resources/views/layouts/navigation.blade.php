@@ -46,6 +46,13 @@
                             {{ __('PSI') }}
                         </x-dropdown-link>
 
+                        <!-- Link para PSI -->
+                        <x-dropdown-link :href="route('historico-encaminhamentos.index')" class="dropdown-link">
+                            {{ __('Meus Encaminhamentos') }}
+                        </x-dropdown-link>
+
+
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -111,7 +118,7 @@
 <style>
     .dropdown-link {
     color: inherit;
-    text-decoration: none;    
+    text-decoration: none;
     }
 
     .dropdown-link:hover {

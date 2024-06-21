@@ -62,14 +62,14 @@
             </div>
             <!-- Detalhes adicionais (inicialmente ocultos) -->
             <div id="details_{{ $atendimento['id'] }}" class="hidden mt-2">
-                
+
             </div>
         </td>
     </td>
-    <td class="col-12  w-100 border-0 p-0 d-none " id="detalhes-{{$atendimento['id']}}">  
+    <td class="col-12  w-100 border-0 p-0 d-none " id="detalhes-{{$atendimento['id']}}">
         <table class="w-100" >
             <tbody>
-                
+
                 <hr class="m-0 mb-2">
                 <tr class="row">
                     <td class="col-2"></td>
@@ -81,7 +81,7 @@
                                 <div class="col-6 d-flex flex-column">
                                     <p class="m-0">Sexo: {{$atendimento['sexo']}} </p>
                                     <p class="m-0">Data de Nascimento: {{ date('d/m/Y', strtotime($atendimento['data_nascimento'])) }} </p>
-                                    <p class="m-0">Endereço: {{$atendimento['endereco']}} </p>    
+                                    <p class="m-0">Endereço: {{$atendimento['endereco']}} </p>
                                 </div>
 
                                 <div class="col-6 d-flex flex-column">
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -100,8 +100,8 @@
                         <hr class="m-2 mb-2">
                     </td>
                 </tr>
-                
-                
+
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -110,7 +110,7 @@
                             <h6>Unidade Básica de Saúde:</h6>
                             <div class="row">
                                 <div class="col-6 d-flex flex-column">
-                                    <p class="m-0">Nome da UBS: {{$atendimento['ubs']}}</p>  
+                                    <p class="m-0">Nome da UBS: {{$atendimento['ubs']}}</p>
                                 </div>
 
                                 <div class="col-6 d-flex flex-column">
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -128,7 +128,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -137,11 +137,11 @@
                             <h6>Condições de Saúde:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">Diagnóstico clínico: {{$atendimento['diagnostico']}}</p>  
-                                    <p class="m-0" style="max-width: 90%;">Comorbidades associadas: {{$atendimento['comorbidades']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">Diagnóstico clínico: {{$atendimento['diagnostico']}}</p>
+                                    <p class="m-0" style="max-width: 90%;">Comorbidades associadas: {{$atendimento['comorbidades']}}</p>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
 
                                 <div class="col-6 d-flex flex-column">
@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -163,7 +163,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -210,11 +210,11 @@
                                     @if($atendimento['multiplas'])
                                         Múltiplas: {!! $atendimento['multiplas_descricao'] !!}
                                     @endif
-    
+
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -224,7 +224,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -232,11 +232,11 @@
                             <h6>Queixa do paciente:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;"> {{$atendimento['queixa']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;"> {{$atendimento['queixa']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -246,7 +246,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -254,11 +254,11 @@
                             <h6>Principais achados do Exame Físico:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['achados_exame_fisico']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['achados_exame_fisico']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -268,7 +268,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -276,11 +276,11 @@
                             <h6>Testes padronizados realizados:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['testes_padronizados']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['testes_padronizados']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -290,7 +290,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -298,11 +298,11 @@
                             <h6>Condição funcional do paciente:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['condicao_funcional']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['condicao_funcional']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -312,7 +312,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -320,11 +320,11 @@
                             <h6>Fatores ambientais e pessoais Primário:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['fatores_ambientais']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['fatores_ambientais']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -334,7 +334,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -342,11 +342,11 @@
                             <h6>Diagnóstico Fisioterapêutico Primário:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['diagnostico_fisioterapeutico']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['diagnostico_fisioterapeutico']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -356,7 +356,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -364,11 +364,11 @@
                             <h6>Atividades ou grupos operativos dos quais o usuário participa:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0">{{str_replace('_', ' ', $atendimento['atividades'])}}</p>  
+                                    <p class="m-0">{{str_replace('_', ' ', $atendimento['atividades'])}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -378,7 +378,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -386,11 +386,11 @@
                             <h6>Atividades ou grupos operativos dos quais o usuário participou:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0">{{str_replace('_', ' ', $atendimento['atividades_passadas'])}}</p>  
+                                    <p class="m-0">{{str_replace('_', ' ', $atendimento['atividades_passadas'])}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -400,7 +400,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -408,13 +408,13 @@
                             <h6>Sessão exclusiva para atenção secundária:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">Condição funcional atual do paciente: {{$atendimento['funcional_condicao']}}</p>  
-                                    <p class="m-0" style="max-width: 90%;">Tratamento ofertado: {{$atendimento['tratamento_ofertado']}}</p>  
-                                    <p class="m-0" style="max-width: 90%;">Evolução funcional do usuário desde o início: {{$atendimento['evolucao_funcional']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">Condição funcional atual do paciente: {{$atendimento['funcional_condicao']}}</p>
+                                    <p class="m-0" style="max-width: 90%;">Tratamento ofertado: {{$atendimento['tratamento_ofertado']}}</p>
+                                    <p class="m-0" style="max-width: 90%;">Evolução funcional do usuário desde o início: {{$atendimento['evolucao_funcional']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -424,7 +424,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -432,11 +432,11 @@
                             <h6>Número de sessões realizadas:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{str_replace('_', ' ', $atendimento['sessoes'])}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{str_replace('_', ' ', $atendimento['sessoes'])}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -446,7 +446,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -454,11 +454,11 @@
                             <h6>Assiduidade do paciente:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{str_replace('_', ' ', $atendimento['assiduidade'])}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{str_replace('_', ' ', $atendimento['assiduidade'])}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -468,7 +468,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -476,11 +476,11 @@
                             <h6>Fatores ambientais e pessoais Secundários:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['ambientais_pessoais']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['ambientais_pessoais']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -490,7 +490,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -498,11 +498,11 @@
                             <h6>Diagnóstico Fisioterapêutico Secundário:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;"> {{$atendimento['diagnostico_fisio']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;"> {{$atendimento['diagnostico_fisio']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -512,7 +512,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -520,11 +520,11 @@
                             <h6>Critérios para alta fisioterapêutica do setor secundário:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['criterios']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['criterios']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -534,7 +534,7 @@
                     </td>
                 </tr>
 
-                
+
                 <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
@@ -542,11 +542,11 @@
                             <h6>Justificativa para contrarreferência para a APS:</h6>
                             <div >
                                 <div>
-                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['justificativa']}}</p>  
+                                    <p class="m-0" style="max-width: 90%;">{{$atendimento['justificativa']}}</p>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
-                    </td>                
+                    </td>
                 </tr>
 
                 <tr class="row">
@@ -557,24 +557,38 @@
                 </tr>
 
                 <td class=" icon col w-1/5 px-4 py-2 text-right align-middle">
-                    <button type="button" class="text-white font-bold py-2 px-4 rounded shadow-md" 
-                    style="background-color: #186f65;" data-toggle="modal" 
-                    data-target="#modaleditar" onclick="resgatarDados('{{json_encode($atendimento)}}')">Editar
-                </button>
+                    <a href="/editar_paciente/{{ $atendimento['id'] }}">
+                        <button type="button" class="text-white font-bold py-2 px-4 rounded shadow-md"
+                            style="background-color: #186f65;">Editar
+                        </button>
+                    </a>
                 </td>
+
+
+
+                    <button type="button" class=" icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65;" data-toggle="modal" data-target="#modalAddNovaFichaAtendimento">
+                        + Adicionar Ficha
+                    </button>
+
+                    <a href="/listar_fichas_paciente/{{ $atendimento['id'] }}">
+                        <button type="button" class="text-white font-bold py-2 px-4 rounded shadow-md"
+                            style="background-color: #186f65;">Listar Fichas do Paciente
+                        </button>
+                    </a>
+
+                    <br><br>
 
                 <form action="{{ route('encaminhar') }}" method="post">
                     @csrf
                     <td class="col w-1/5 px-4 py-2 text-right align-middle">
                         <div class="flex justify-end items-center">
-                            <input type="hidden" name="atendimento_id" value="{{ $atendimento['atendimento_id'] }}">
-                            
+                            <input type="hidden" name="atendimento_id" value="{{ $atendimento['id'] }}">
+
                             <select name="encaminhamento" class=" icon cursor-pointer mr-2 border border-gray-300 bg-white text-#186f65 hover:text-green-800 font-bold py-2 px-5 rounded-lg shadow-lg" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-right: 10px;">
-                                <option value="Primário">Primário</option>
-                                
-                                <option value="Secundário">Secundário</option>
-                            </select>
-                            
+                                <option value="Primário" @if($atendimento['encaminhamento'] == 'Primário') selected @endif>Primário</option>
+                <option value="Secundário" @if($atendimento['encaminhamento'] == 'Secundário') selected @endif>Secundário</option>
+            </select>
+
                             <button type="submit" class=" icon bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-2 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">Encaminhar
                             </button>
                         </div>
@@ -594,6 +608,8 @@
 
 
 </tr>
+
+@include('modal_registar_ficha_atendimento', ['atendimento' => $atendimento])
 
 
 

@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AtendimentoController;
+use App\Http\Controllers\FichaAtendimentoController;
+use App\Http\Controllers\HistoricoEncaminhamentoController;
+use App\Http\Controllers\pacientesController;
+use App\Http\Controllers\PatientSessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,15 +48,31 @@ Route::middleware('auth', 'terms.accepted')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     Route::get('/dashboard', [AtendimentoController::class, 'listarAtendimentos'])->name('dashboard');
-    
+    Route::get('/listar_fichas_paciente/{id}', [AtendimentoController::class, 'listar_fichas_paciente'])->name('listar_fichas_paciente');
+
 
     // Rotas para exibir e salvar dados do formulário
     Route::post('/salvar-dados', [AtendimentoController::class, 'salvarDados'])->name('SalvarDados');
     Route::get('/formprimario', [AtendimentoController::class, 'renderizarView'])->name('formprimario');
     Route::post('/encaminhar', [AtendimentoController::class, 'encaminhar'])->name('encaminhar');
     Route::post('/atendimentos/{id}/edit', [AtendimentoController::class, 'edit'])->name('edit');
+
+
+
+Route::get('/historico-encaminhamentos', [HistoricoEncaminhamentoController::class, 'index'])
+    ->name('historico-encaminhamentos.index');
+
+
+    // ============= Pacientes
+    Route::get('/editar_paciente/{id}', [pacientesController::class, 'edit'])->name('editar_paciente');
+    Route::post('/atualizar_paciente/{id}', [pacientesController::class, 'update'])->name('atualizar_paciente');
+
+
+    Route::post('/patient_sessions', [PatientSessionController::class, 'store']);
+
+    Route::resource('ficha_atendimento', FichaAtendimentoController::class);
 
 });
 

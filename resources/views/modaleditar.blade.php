@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                  
+
                 <div class="py-4 mb-6 border-2 border-gray-300 shadow-md mx-auto" style="background-color: #186f65; max-width: 670px; margin-top: 20px;">
                     <h1 class="text-2xl font-bold text-center text-white">Atualização</h1>
                 </div>
@@ -21,7 +21,7 @@
                           @include('formoutros')
                           @include('formprimario')
                           @include('formsecundario')
-                          
+
 
                       <!-- ///////////////////////////////////////////////////////////////////////////////////-->
 
@@ -70,7 +70,7 @@
         body.classList.remove('modal-open');
         body.removeChild(backdrop);
       }
-      
+
     });
 
     function toggleField(checkbox) {

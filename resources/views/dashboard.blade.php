@@ -6,10 +6,22 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+        <!-- Inclua o SweetAlert 2 via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{ __('Lista de Atendimentos') }}
         </h2>
     </x-slot>
+
+    <center>
+        <!-- Alerta -->
+        @if($message)
+            <div class="alert alert-{{ $alertType }} mt-4">
+                {{ $message }}
+            </div>
+        @endif
+    </center>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -19,41 +31,41 @@
                     <div class="w-1/4 block">
                     <form action="{{ route('dashboard') }}" method="GET">
                         <input type="text" id="searchInput3" name="search"
-                        class="border-gray-300 rounded-md px-4 py-2 w-full bg-white border shadow-sm border-slate-300 
-                        placeholder-slate-400 focus:outline-none focus:border-green-800 focus:ring-green-800 block 
+                        class="border-gray-300 rounded-md px-4 py-2 w-full bg-white border shadow-sm border-slate-300
+                        placeholder-slate-400 focus:outline-none focus:border-green-800 focus:ring-green-800 block
                         w-full rounded-md sm:text-sm focus:ring-1 focus:ring-opacity-50" placeholder="Nome ou Cartão SUS...">
 
                         <button class="d-none" type="submit">Search</button>
                     </form>
-                        
+
                     </div>
                     <!-- Ver somente meus atendimentos switch -->
                     <div class="">
-                        
+
                         <form class="flex items-center ml-2" id="dashboardForm" action="{{ route('dashboard') }}" method="GET">
                             <label class="switch flex items-center justify-center">
-                                <input type="checkbox" id="switchVerAtendimentos" 
-                                onchange="meusEncaminhamentos('{{\Illuminate\Support\Facades\Auth::user()->attention_type}}')">
+                                <input type="checkbox" id="switchVerAtendimentos" onchange="filtrarAtendimentos()">
                                 <span class="slider"></span>
                             </label>
                             <span class="ml-2 text-gray-800">Ver somente meus atendimentos</span>
                         </form>
-                        
+
+
                     </div>
                                         <!-- Botão Novo paciente -->
                     <button type="button" class=" icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65;" data-toggle="modal" data-target="#modalNovoPaciente">
                         Novo Paciente
-                        
                     </button>
 
 
                     <!-- Modal -->
-                    
 
+
+                    @include('modalatendimento')
                     @include('modaleditar')
-                    
-                    
-                    
+
+
+
 
                 </div>
             </div>
@@ -91,7 +103,37 @@
         </div>
     </div>
 
-    
+
+    <script>
+        function filtrarAtendimentos() {
+            const checkbox = document.getElementById('switchVerAtendimentos');
+            const form = document.getElementById('dashboardForm');
+            const url = new URL(window.location.href);
+
+            if (checkbox.checked) {
+                url.searchParams.set('filtrar_atendimentos', 'true');
+            } else {
+                url.searchParams.set('filtrar_atendimentos', 'false');
+            }
+
+            window.location.href = url.toString();
+        }
+
+        // Preserve the checkbox state on page reload
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const filtrarAtendimentos = urlParams.get('filtrar_atendimentos');
+            const checkbox = document.getElementById('switchVerAtendimentos');
+
+            if (filtrarAtendimentos === 'true') {
+                checkbox.checked = true;
+            } else {
+                checkbox.checked = false;
+            }
+        };
+    </script>
+
+
 
     <script>
         // Seleciona o campo de entrada de texto
@@ -152,13 +194,13 @@
         //         const tipoUsuarioAtual = '{{ \Illuminate\Support\Facades\Auth::user()->attention_type }}'; // Obtenha o tipo de usuário de onde for apropriado
 
         //         // Verifica se o switch está marcado
-        //         if (checkbox.checked) {            
+        //         if (checkbox.checked) {
         //             // Se estiver marcado, filtra apenas os atendimentos encaminhados para o tipo de usuário atual
         //                         form.action = '{{ route('dashboard', ['search' => '']) }}' + tipoUsuarioAtual;
-        //         } else {           
+        //         } else {
         //             // Se não estiver marcado, volta para a rota padrão sem filtro
         //                         form.action = "{{ route('dashboard') }}";
-        //         }            
+        //         }
         //                 form.submit();
         //     });
         // }
@@ -170,13 +212,13 @@
         //         const tipoUsuario = '{{\Illuminate\Support\Facades\Auth::user()->attention_type}}'; // Obtenha o tipo de usuário de onde for apropriado
 
         //         // Verifica se o switch está marcado
-        //         if (checkbox.checked) {            
+        //         if (checkbox.checked) {
         //             // Se estiver marcado, filtra apenas os atendimentos encaminhados para o tipo de usuário atual
         //             form.action = '{{ route('dashboard', [ 'search' => ''])}}' + tipoUsuario;
-        //         } else {           
+        //         } else {
         //             // Se não estiver marcado, volta para a rota padrão sem filtro
         //             form.action = "{{ route('dashboard') }}";
-        //         }            
+        //         }
         //         form.submit();
         //     });
         // }
@@ -186,13 +228,13 @@
         //     const form = document.getElementById('dashboardForm');
         //     const checkbox = document.getElementById('switchVerAtendimentos');
 
-        //     if (tipoUsuario) {            
-               
+        //     if (tipoUsuario) {
+
         //         form.action = '{{ route('dashboard', [ 'search' => ' + tipoUsuario + '])}}';
 
-        //     } else {           
+        //     } else {
         //         form.action = "{{ route('dashboard') }}";
-        //     }            
+        //     }
         //     form.submit();
         // }
 
@@ -202,7 +244,7 @@
         }
         function resgatarDados(atendimento) {
             atendimento = JSON.parse(atendimento)
-            
+
 
             document.getElementById('nome').value = atendimento.nome;
             document.getElementById('idade').value = atendimento.idade;
@@ -237,7 +279,7 @@
             if(atendimento.neurologicas) {
                 document.getElementById('neurologicas').setAttribute('checked', true)
             }
-        
+
 
             if (atendimento.neurologicas) {
                 document.getElementById('neurologicas').setAttribute('checked', true);
@@ -260,39 +302,39 @@
             }
             document.getElementById('motivos-osteomusculares').value = atendimento.osteomusculares_descricao;
 
-            
-        
+
+
             if (atendimento.uroginecologicas) {
                 document.getElementById('uroginecologicas').setAttribute('checked', true);
             }
             document.getElementById('motivos-uroginecologicas').value = atendimento.uroginecologicas_descricao;
 
-            
-            
-            
+
+
+
             if (atendimento.cardiovasculares) {
                 document.getElementById('cardiovasculares').setAttribute('checked', true);
             }
             document.getElementById('motivos-cardiovasculares').value = atendimento.cardiovasculares_descricao;
 
-            
-            
+
+
             if (atendimento.respiratorias) {
                 document.getElementById('respiratorias').setAttribute('checked', true);
             }
             document.getElementById('motivos-respiratorias').value = atendimento.respiratorias_descricao;
 
-            
-            
-            
+
+
+
             if (atendimento.oncologicas) {
                 document.getElementById('oncologicas').setAttribute('checked', true);
             }
             document.getElementById('motivos-oncologicas').value = atendimento.oncologicas_descricao;
 
-            
-            
-            
+
+
+
             if (atendimento.pediatria) {
                 document.getElementById('pediatria').setAttribute('checked', true);
             }
@@ -303,7 +345,7 @@
             }
             document.getElementById('motivos-deficiencias').value = atendimento.pediatria_descricao;
 
-            
+
 
             document.getElementById('queixa').value = atendimento.queixa;
 
@@ -367,7 +409,7 @@
             if (atendimento.sessoes) {
                 // Separa as sessões em um array
                 var sessoes = atendimento.sessoes.split(',');
-                
+
                 // Itera sobre cada sessão
                 sessoes.forEach(function(sessao) {
                     // Verifica o valor da sessão e marca o checkbox correspondente
@@ -417,11 +459,11 @@
 
             document.getElementById('justificativa_sec').value = atendimento.justificativa;
 
-            
+
         let modal = document.getElementById('modaleditar');
-        
+
         }
-        
+
     </script>
 
 

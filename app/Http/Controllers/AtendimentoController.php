@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -7,8 +7,11 @@ use App\Models\Atendimento;
 use App\Models\AtendimentoPrimario; // Importe o modelo Atendimentos aqui
 use App\Models\AtendimentoSecundario;
 use App\Models\DadosBasicos;
+use App\Models\EncaminhamentoHistorico;
+use App\Models\FichaAtendimento;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
 
 class AtendimentoController extends Controller
 {
@@ -243,7 +246,7 @@ class AtendimentoController extends Controller
 
     public function edit($id)
     {
-        
+
         // Recuperar o atendimento pelo ID
         $atendimento = Atendimento::findOrFail($id);
 
@@ -257,8 +260,8 @@ class AtendimentoController extends Controller
         // Retornar a view de edição com os dados do atendimento
         return view('modalatendimento', compact('atendimento'));
     }
-    
-    
+
+
     public function update(Request $request, $id)
     {
         try {
@@ -352,13 +355,12 @@ class AtendimentoController extends Controller
             dd($exception); // Tratar o erro conforme necessário
         }
     }
-    
-    
-    
+
+
+
     public function salvarDados(Request $request)
     {
-        try{
-
+        try {
             $checkbox = [
                 'dor',
                 'incapacidade',
@@ -381,7 +383,7 @@ class AtendimentoController extends Controller
                 'geracao_esporte_ra',
                 'nda_ra'
             ];
-            
+
             $text_areas = [
                 'dor_descricao',
                 'incapacidade_descricao',
@@ -395,124 +397,186 @@ class AtendimentoController extends Controller
                 'multiplas_descricao',
             ];
 
-            // dd($request->all());
-            
             $request->validate($this->regras());
-
 
             $atendimento = $request->all();
 
-            // dd($atendimento);
-
             list($dados_basicos, $atendimento_primario, $atendimento) = $this->getDadosAtendimentos($atendimento);
 
-            // dd($atendimento_primario);
-            
-            if(isset($atendimento_primario['motivos']) and isset($atendimento_primario['motivos-descricao'])){
+            if (isset($atendimento_primario['motivos']) && isset($atendimento_primario['motivos-descricao'])) {
 
-                foreach($atendimento_primario['motivos-descricao'] as $key => $valor){
-                    if(!$valor){
-                        unset($atendimento_primario['motivos-descricao'][$key]);
+                $motivos = $atendimento_primario['motivos'];
+                $motivosDescricao = $atendimento_primario['motivos-descricao'];
+
+                // Remover motivos e descrições com valor nulo
+                $filteredMotivos = [];
+                $filteredMotivosDescricao = [];
+                foreach ($motivos as $key => $motivo) {
+                    if (!empty($motivo) && isset($motivosDescricao[$key])) {
+                        $filteredMotivos[] = $motivo;
+                        $filteredMotivosDescricao[] = $motivosDescricao[$key];
                     }
                 }
-                $atendimento_primario['motivos-descricao'] = array_values($atendimento_primario['motivos-descricao']);
 
-                $motivosedescricao = array_combine(
-                    array_values($atendimento_primario['motivos']), array_values($atendimento_primario['motivos-descricao']) );
-                
-    
-    
+                $atendimento_primario['motivos-descricao'] = $filteredMotivosDescricao;
+
+                $motivosedescricao = array_combine($filteredMotivos, $filteredMotivosDescricao);
+
                 unset($atendimento_primario['motivos-descricao']);
                 unset($atendimento_primario['motivos']);
 
-                foreach($motivosedescricao as $motivo => $descricao){
+                foreach ($motivosedescricao as $motivo => $descricao) {
                     $atendimento_primario[strtolower($motivo)] = 1;
-                    $atendimento_primario[strtolower($motivo).'_descricao'] = $descricao;
+                    $atendimento_primario[strtolower($motivo) . '_descricao'] = $descricao;
                 }
-                
-                
-                
             }
 
-            $primario=AtendimentoPrimario::create($atendimento_primario);
+            $primario = AtendimentoPrimario::create($atendimento_primario);
+            $secundario = AtendimentoSecundario::create($atendimento);
+            $dadosbasicos = DadosBasicos::create($dados_basicos);
 
-            // if(!empty($atendimento)){
-                $secundario=AtendimentoSecundario::create($atendimento);
-
-            // }
-
-            
-            $dadosbasicos=DadosBasicos::create($dados_basicos);
-
-            $arr=['user_id'=>Auth::id(), 'tb_dados_basicos_id'=>$dadosbasicos->id,
-            'tb_atendimento_primario_id'=>$primario->id ?? $dados_basicos->id, 
-            'tb_atendimento_secundario_id'=>$secundario->id ?? $dados_basicos->id, 
+            $arr = [
+                'user_id' => Auth::id(),
+                'tb_dados_basicos_id' => $dadosbasicos->id,
+                'tb_atendimento_primario_id' => $primario->id ?? $dados_basicos->id,
+                'tb_atendimento_secundario_id' => $secundario->id ?? $dados_basicos->id,
             ];
-
-            // dd($arr);
 
             Atendimento::create($arr);
 
-            // Redirecionar para uma rota após salvar os dados (opcional)
             return redirect()->route('dashboard')->with('success', 'Dados salvos com sucesso!');
-        } catch(\Exception $exception){dd($exception);}
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
     }
+
 
     public function renderizarView()
     {
         return view('formprimario');
     }
 
-    public function listarAtendimentos(Request $request)    
+    public function listarAtendimentos(Request $request)
     {
-        
-        $atendimentosids = Atendimento::all();
-        $atendimentos=[];
+        $user = Auth::user(); // Obtém o usuário autenticado
 
-        if($atendimentosids){
-            
-            foreach($atendimentosids as $atendimento){
-                //linha da tabela com id, tb_dados_basicos_id, tb_atendimento_primario_id, tb_atendimento_secundario_id, encaminhamento
-                $atendimento = $atendimento->toArray();
+        $filtrarAtendimentos = $request->query('filtrar_atendimentos', 'false') === 'true';
+        $atendimentos = [];
 
-                $dados_basicos=DadosBasicos::find($atendimento['tb_dados_basicos_id'])->toArray();
-                $dados_primario=AtendimentoPrimario::find($atendimento['tb_atendimento_primario_id'])->toArray();
-                $dados_secundario=AtendimentoSecundario::find($atendimento['tb_atendimento_secundario_id'])->toArray();
-
-                $user = Auth::user();
-                
-                $user=User::find($atendimento['user_id']);
-
-                $responsavel = $user ? $user->name : 'N/A';
-                $atendimentos[]=array_merge($dados_basicos, $dados_primario, $dados_secundario, ['responsavel'=>$user->name, 'atendimento_id'=>$atendimento['id']]);
-
-            } 
+        if ($filtrarAtendimentos) {
+            $atendimentos = Atendimento::where('encaminhamento', $user->attention_type)->get();
+        } else {
+            $atendimentos = Atendimento::all();
+            $atendimentosids = Atendimento::all();
         }
+
+       // Obter a data de hoje
+        $today = Carbon::today();
+
+        // Filtrar os históricos para pegar apenas aqueles da data de hoje
+        $historicos_encaminhamentos = EncaminhamentoHistorico::where('encaminhamento', $user->attention_type)
+            ->whereDate('created_at', $today)
+            ->get();
+
+
+        $message = '';
+        $alertType = '';
+
+        if ($historicos_encaminhamentos->count() > 0) {
+            $message = 'Você tem novos encaminhamentos hoje.';
+            $alertType = 'success';
+        } else {
+            $message = 'Não há novos encaminhamentos hoje.';
+            $alertType = 'danger';
+        }
+
+        // return $historicos_encaminhamentos;
+        // Filtra os atendimentos pelo user_id do usuário autenticado
+
+        $dados_basicos = [];
+        $dados_primario = [];
+        $dados_secundario = [];
+        $atendimentosFiltrados = [];
+
+        foreach ($atendimentos as $atendimento) {
+            $atendimentoArray = $atendimento->toArray();
+
+            $dados_basicos = DadosBasicos::find($atendimentoArray['tb_dados_basicos_id']);
+            $dados_primario = AtendimentoPrimario::find($atendimentoArray['tb_atendimento_primario_id']);
+            $dados_secundario = AtendimentoSecundario::find($atendimentoArray['tb_atendimento_secundario_id']);
+
+            if (!$dados_basicos || !$dados_primario || !$dados_secundario) {
+                // Se qualquer um dos registros não for encontrado, pule este atendimento
+                continue;
+            }
+
+            $dados_basicos = $dados_basicos->toArray();
+            $dados_primario = $dados_primario->toArray();
+            $dados_secundario = $dados_secundario->toArray();
+
+            $responsavel = $user ? $user->name : 'N/A';
+
+            $atendimentosFiltrados[] = array_merge($dados_basicos, $dados_primario, $dados_secundario, [
+                'responsavel' => $responsavel,
+                'atendimento_id' => $atendimentoArray['id'],
+                'encaminhamento' => $atendimentoArray['encaminhamento']
+            ]);
+        }
+
         $search = $request->input('search');
-        if(isset($search)) {
+        if (isset($search)) {
             $atendimentos_filtrados = [];
-            foreach($atendimentos as $atendimento){
-                if(str_contains($atendimento['nome'], $search) or str_contains($atendimento['cartao_sus'], $search)) {
+            foreach ($atendimentosFiltrados as $atendimento) {
+                if (str_contains($atendimento['nome'], $search) || str_contains($atendimento['cartao_sus'], $search)) {
                     $atendimentos_filtrados[] = $atendimento;
                 }
-            } 
-            $atendimentos = $atendimentos_filtrados;
+            }
+            $atendimentosFiltrados = $atendimentos_filtrados;
         }
-        return view('dashboard', ['atendimentos' => $atendimentos]);
 
+        return view('dashboard', ['atendimentos' => $atendimentosFiltrados,'message' => $message,
+                                'alertType' => $alertType], compact('historicos_encaminhamentos'));
     }
 
-    public function encaminhar(Request $request)    
+    public function encaminhar(Request $request)
     {
         // Validação dos dados do formulário de encaminhamento
-    
-        // Obtendo o atendimento pelo ID
-        $atendimento = Atendimento::findOrFail($request->atendimento_id);
-        // Atualizando a coluna encaminhamento
-        $atendimento->encaminhamento = $request->encaminhamento;
-        $atendimento->save();
-    
-        return redirect()->back();
+        $request->validate([
+            'atendimento_id' => 'required|exists:atendimentos,id',
+            'encaminhamento' => 'required|in:Primário,Secundário', // ajuste conforme suas necessidades
+        ]);
+
+        try {
+            // Obtendo o atendimento pelo ID
+            $atendimento = Atendimento::findOrFail($request->atendimento_id);
+
+            // Atualizando a coluna encaminhamento no atendimento
+            $atendimento->encaminhamento = $request->encaminhamento;
+            $atendimento->save();
+
+            // Obtendo o ID do usuário logado
+            $userId = Auth::id();
+
+            // Registrando o histórico de encaminhamento com o ID do usuário logado
+            EncaminhamentoHistorico::create([
+                'atendimento_id' => $atendimento->id,
+                'encaminhamento' => $request->encaminhamento,
+                'user_id' => $userId,
+            ]);
+
+            return redirect()->back()->with('success', 'Encaminhamento realizado com sucesso.');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Erro ao realizar o encaminhamento: ' . $exception->getMessage());
+        }
+    }
+
+    public function listar_fichas_paciente($id)
+    {
+        $fichas = FichaAtendimento::where('atendimento_id', $id)->get();
+
+        // return $fichas;
+
+        return view('atendimentos.app_fichas_atendimentos', compact('fichas'));
     }
 
 }

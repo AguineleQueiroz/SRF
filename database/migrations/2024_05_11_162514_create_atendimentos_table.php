@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('atendimentos', function (Blueprint $table) {
-            
+
             $table->id();
 
             $table->unsignedBigInteger('user_id');
@@ -27,14 +27,14 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->foreign('tb_dados_basicos_id')->references('id')->on('dados_basicos');
+            // $table->foreign('tb_dados_basicos_id')->references('id')->on('dados_basicos');
 
             $table->foreign('tb_atendimento_primario_id')->references('id')->on('atendimentos_primarios');
 
-            $table->foreign('tb_atendimento_secundario_id')->references('id')->on('atendimentos_secundarios');
+            // $table->foreign('tb_atendimento_secundario_id')->references('id')->on('atendimentos_secundarios');
 
             $table->timestamps();
-            
+
         });
     }
 

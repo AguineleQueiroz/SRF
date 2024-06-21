@@ -1,5 +1,5 @@
 
-  
+
   <div class="modal fade" id="modalNovoPaciente" tabindex="-1" role="dialog" aria-labelledby="modalNovoPacienteLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" style="min-width: 62%;" role="document"> <!-- Definindo uma largura mínima de 90% -->
             <div class="modal-content">
@@ -8,7 +8,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                  
+
                 <div class="py-4 mb-6 border-2 border-gray-300 shadow-md mx-auto" style="background-color: #186f65; max-width: 670px; margin-top: 20px;">
                     <h1 class="text-2xl font-bold text-center text-white">Cadastro de Pacientes</h1>
                 </div>
@@ -19,28 +19,8 @@
 
                       <!-- ///////////////////////////////////////////////////////////////////////////////////-->
 
-                      @php
-                          $user = Auth::user();
-                      @endphp
 
-                      @if($user->attention_type == 'Primário')
-
-                          @include('formoutros')
-                          @include('formprimario')
-                          
-                          
-                      @elseif($user->attention_type == 'Secundário')
-
-                          @include('formoutros')
-                          @include('formsecundario')
-                          
-                      @else
-
-                          @include('formoutros')
-
-                      @endif
-
-                      <!-- ///////////////////////////////////////////////////////////////////////////////////-->
+                        @include('formoutros')
 
                       <!-- Botões de salvar e cancelar -->
                       <div class="flex justify-end mt-4">
@@ -87,7 +67,7 @@
         body.classList.remove('modal-open');
         body.removeChild(backdrop);
       }
-      
+
     });
 
     function toggleField(checkbox) {
