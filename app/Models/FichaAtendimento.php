@@ -15,7 +15,7 @@ class FichaAtendimento extends Model
         'tipo_ficha',
         'atendimento_id',
         'user_id',
-        'motivos',
+        'motivo',
         'motivos_descricao',
         'queixa',
         'achados_exame_fisico',
@@ -43,4 +43,9 @@ class FichaAtendimento extends Model
         'atividades_passadas' => 'array',
         'sessoes' => 'array'
     ];
+
+    public function motivoDescricoes()
+    {
+        return $this->hasMany(MotivoDescricao::class);
+    }
 }

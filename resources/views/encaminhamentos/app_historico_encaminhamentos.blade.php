@@ -27,55 +27,55 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($fichas as $ficha)
+                @foreach($historicos as $historico)
                 <tr>
-                    <td class="py-2 px-4 border-b">{{ $ficha->id }}</td>
-                    <td class="py-2 px-4 border-b">{{ $ficha->tipo_ficha }}</td>
-                    <td class="py-2 px-4 border-b">{{ $ficha->funcional_condicao ?? '-' }}</td>
-                    <td class="py-2 px-4 border-b">{{ $ficha->tratamento_ofertado ?? '-' }}</td>
+                    <td class="py-2 px-4 border-b">{{ $historico->id }}</td>
+                    <td class="py-2 px-4 border-b">{{ $historico->tipo_ficha }}</td>
+                    <td class="py-2 px-4 border-b">{{ $historico->funcional_condicao ?? '-' }}</td>
+                    <td class="py-2 px-4 border-b">{{ $historico->tratamento_ofertado ?? '-' }}</td>
                     <td class="py-2 px-4 border-b">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" data-toggle="modal" data-target="#viewFichaModal{{ $ficha->id }}">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" data-toggle="modal" data-target="#viewFichaModal{{ $historico->id }}">
                             Visualizar
                         </button>
                         <!-- Modals for viewing details -->
-                        <div class="modal fade" id="viewFichaModal{{ $ficha->id }}" tabindex="-1" role="dialog" aria-labelledby="viewFichaModalLabel{{ $ficha->id }}" aria-hidden="true">
+                        <div class="modal fade" id="viewFichaModal{{ $historico->id }}" tabindex="-1" role="dialog" aria-labelledby="viewFichaModalLabel{{ $historico->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="viewFichaModalLabel{{ $ficha->id }}">Ficha de Atendimento - ID: {{ $ficha->id }}</h5>
+                                        <h5 class="modal-title" id="viewFichaModalLabel{{ $historico->id }}">Ficha de Atendimento - ID: {{ $historico->id }}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        @if($ficha->tipo_ficha == 'Primário')
+                                        @if($historico->tipo_ficha == 'Primário')
                                             <!-- Campos para atenção primária -->
                                             <p><strong>Tipo de Ficha:</strong> Primário</p>
-                                            <p><strong>Motivos:</strong> {{ implode(', ', $ficha->motivos ?? []) }}</p>
-                                            <p><strong>Descrição dos Motivos:</strong> {{ $ficha->motivos_descricao }}</p>
-                                            <p><strong>Queixa:</strong> {{ $ficha->queixa }}</p>
-                                            <p><strong>Achados do Exame Físico:</strong> {{ $ficha->achados_exame_fisico }}</p>
-                                            <p><strong>Testes Padronizados:</strong> {{ $ficha->testes_padronizados }}</p>
-                                            <p><strong>Condição Funcional:</strong> {{ $ficha->condicao_funcional }}</p>
-                                            <p><strong>Fatores Ambientais e Pessoais:</strong> {{ $ficha->fatores_ambientais }}</p>
-                                            <p><strong>Diagnóstico Fisioterapêutico:</strong> {{ $ficha->diagnostico_fisioterapeutico }}</p>
-                                            <p><strong>Atividades:</strong> {{ implode(', ', $ficha->atividades ?? []) }}</p>
-                                            <p><strong>Atividades Passadas:</strong> {{ implode(', ', $ficha->atividades_passadas ?? []) }}</p>
-                                        @elseif($ficha->tipo_ficha == 'Secundário')
+                                            <p><strong>Motivos:</strong> {{ implode(', ', $historico->motivos ?? []) }}</p>
+                                            <p><strong>Descrição dos Motivos:</strong> {{ $historico->motivos_descricao }}</p>
+                                            <p><strong>Queixa:</strong> {{ $historico->queixa }}</p>
+                                            <p><strong>Achados do Exame Físico:</strong> {{ $historico->achados_exame_fisico }}</p>
+                                            <p><strong>Testes Padronizados:</strong> {{ $historico->testes_padronizados }}</p>
+                                            <p><strong>Condição Funcional:</strong> {{ $historico->condicao_funcional }}</p>
+                                            <p><strong>Fatores Ambientais e Pessoais:</strong> {{ $historico->fatores_ambientais }}</p>
+                                            <p><strong>Diagnóstico Fisioterapêutico:</strong> {{ $historico->diagnostico_fisioterapeutico }}</p>
+                                            <p><strong>Atividades:</strong> {{ implode(', ', $historico->atividades ?? []) }}</p>
+                                            <p><strong>Atividades Passadas:</strong> {{ implode(', ', $historico->atividades_passadas ?? []) }}</p>
+                                        @elseif($historico->tipo_ficha == 'Secundário')
                                             <!-- Campos para atenção secundária -->
                                             <p><strong>Tipo de Ficha:</strong> Secundário</p>
-                                            <p><strong>Condição Funcional:</strong> {{ $ficha->funcional_condicao }}</p>
-                                            <p><strong>Tratamento Ofertado:</strong> {{ $ficha->tratamento_ofertado }}</p>
-                                            <p><strong>Evolução Funcional:</strong> {{ $ficha->evolucao_funcional }}</p>
-                                            <p><strong>Sessões:</strong> {{ implode(', ', $ficha->sessoes ?? []) }}</p>
-                                            <p><strong>Assiduidade:</strong> {{ $ficha->assiduidade }}</p>
-                                            <p><strong>Fatores Ambientais e Pessoais:</strong> {{ $ficha->ambientais_pessoais }}</p>
-                                            <p><strong>Diagnóstico Fisioterapêutico:</strong> {{ $ficha->diagnostico_fisio }}</p>
-                                            <p><strong>Critérios:</strong> {{ $ficha->criterios }}</p>
-                                            <p><strong>Justificativa:</strong> {{ $ficha->justificativa }}</p>
+                                            <p><strong>Condição Funcional:</strong> {{ $historico->funcional_condicao }}</p>
+                                            <p><strong>Tratamento Ofertado:</strong> {{ $historico->tratamento_ofertado }}</p>
+                                            <p><strong>Evolução Funcional:</strong> {{ $historico->evolucao_funcional }}</p>
+                                            <p><strong>Sessões:</strong> {{ implode(', ', $historico->sessoes ?? []) }}</p>
+                                            <p><strong>Assiduidade:</strong> {{ $historico->assiduidade }}</p>
+                                            <p><strong>Fatores Ambientais e Pessoais:</strong> {{ $historico->ambientais_pessoais }}</p>
+                                            <p><strong>Diagnóstico Fisioterapêutico:</strong> {{ $historico->diagnostico_fisio }}</p>
+                                            <p><strong>Critérios:</strong> {{ $historico->criterios }}</p>
+                                            <p><strong>Justificativa:</strong> {{ $historico->justificativa }}</p>
                                         @endif
-                                        <p><strong>Criado em:</strong> {{ $ficha->created_at }}</p>
-                                        <p><strong>Atualizado em:</strong> {{ $ficha->updated_at }}</p>
+                                        <p><strong>Criado em:</strong> {{ $historico->created_at }}</p>
+                                        <p><strong>Atualizado em:</strong> {{ $historico->updated_at }}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" data-dismiss="modal">Fechar</button>

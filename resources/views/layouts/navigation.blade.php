@@ -46,10 +46,6 @@
                             {{ __('PSI') }}
                         </x-dropdown-link>
 
-                        <!-- Link para PSI -->
-                        <x-dropdown-link :href="route('historico-encaminhamentos.index')" class="dropdown-link">
-                            {{ __('Meus Encaminhamentos') }}
-                        </x-dropdown-link>
 
 
 

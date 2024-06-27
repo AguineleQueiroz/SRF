@@ -9,6 +9,7 @@ use App\Models\AtendimentoSecundario;
 use App\Models\DadosBasicos;
 use App\Models\EncaminhamentoHistorico;
 use App\Models\FichaAtendimento;
+use App\Models\MotivoDescricao;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
@@ -570,14 +571,21 @@ class AtendimentoController extends Controller
         }
     }
 
+
     public function listar_fichas_paciente($id)
     {
-        $fichas = FichaAtendimento::where('atendimento_id', $id)->get();
+        // Ordena as fichas pela coluna 'created_at' em ordem decrescente, filtrando pelo 'atendimento_id'
+        $fichas = FichaAtendimento::where('atendimento_id', $id)
+                                    ->with('motivoDescricoes')
+                                    ->orderBy('created_at', 'desc')
+                                    ->get();
 
-        // return $fichas;
 
+        // Retorna a view com as fichas ordenadas
         return view('atendimentos.app_fichas_atendimentos', compact('fichas'));
     }
+
+
 
 }
 

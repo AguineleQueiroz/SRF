@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_ficha');
             $table->json('motivos')->nullable();
-            $table->json('motivos_descricao')->nullable();
             $table->text('queixa')->nullable();
             $table->text('achados_exame_fisico')->nullable();
             $table->text('testes_padronizados')->nullable();
@@ -37,6 +36,15 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('atendimento_id')->references('id')->on('atendimentos');
+            $table->timestamps();
+        });
+
+        Schema::create('motivo_descricoes', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('ficha_atendimento_id');
+            $table->string('motivo');
+            $table->text('descricao')->nullable();
+            $table->foreign('ficha_atendimento_id')->references('id')->on('ficha_atendimentos')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -566,15 +566,24 @@
 
 
 
-                    <button type="button" class=" icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65;" data-toggle="modal" data-target="#modalAddNovaFichaAtendimento">
+
+                <td class="icon col w-1/5 px-4 py-2 text-right align-middle">
+                    <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md"
+                        style="background-color: #186f65; white-space: nowrap;" data-toggle="modal"
+                        data-target="#modalAddNovaFichaAtendimento" data-atendimento-id="{{ $atendimento['id'] }}">
                         + Adicionar Ficha
                     </button>
+                </td>
 
+
+                <td class="icon col w-1/5 px-4 py-2 text-right align-middle">
                     <a href="/listar_fichas_paciente/{{ $atendimento['id'] }}">
                         <button type="button" class="text-white font-bold py-2 px-4 rounded shadow-md"
-                            style="background-color: #186f65;">Listar Fichas do Paciente
+                            style="background-color: #186f65; white-space: nowrap;">
+                            Listar Fichas do Paciente
                         </button>
                     </a>
+                </td>
 
                     <br><br>
 
@@ -675,3 +684,14 @@
 
 
 
+<script>
+    $(document).ready(function() {
+        $('#modalAddNovaFichaAtendimento').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Botão que acionou o modal
+            var atendimentoId = button.data('atendimento-id'); // Extrai o valor do data-atendimento-id
+
+            var modal = $(this);
+            modal.find('input[name="atendimento_id"]').val(atendimentoId); // Define o valor no campo hidden
+        });
+    });
+</script>
