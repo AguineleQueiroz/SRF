@@ -81,6 +81,13 @@
                                 <div class="col-6 d-flex flex-column">
                                     <p class="m-0">Sexo: {{$atendimento['sexo']}} </p>
                                     <p class="m-0">Data de Nascimento: {{ date('d/m/Y', strtotime($atendimento['data_nascimento'])) }} </p>
+                                    @php
+                                        $birthDate = new DateTime($atendimento['data_nascimento']);
+                                        $currentDate = new DateTime();
+                                        $age = $currentDate->diff($birthDate)->y;
+                                    @endphp
+
+    <p class="m-0">Idade: {{ $age }} anos</p>
                                     <p class="m-0">Endereço: {{$atendimento['endereco']}} </p>
                                 </div>
 

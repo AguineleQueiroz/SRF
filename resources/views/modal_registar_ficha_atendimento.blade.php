@@ -28,7 +28,7 @@
                                 <div class="grid grid-cols-1 gap-4">
                                     @php
                                     $motivos = [
-                                        'dor' => 'Dor',
+                                        'Dor' => 'Dor',
                                         'incapacidade' => 'Incapacidade de realizar AVDS',
                                         'osteomusculares' => 'Condições osteomusculares',
                                         'neurologicas' => 'Condições neurológicas',
@@ -274,6 +274,7 @@
                         }
                     }
                 </script>
+
             </div>
         </div>
     </div>
