@@ -117,55 +117,55 @@
                     </div>
 
                     <!-- 3º tópico: Condições de Saúde -->
-<div class="border-b border-gray-300 mb-6">
-    <h2 class="text-lg font-bold mb-2">Condições de Saúde</h2>
-    <div class="grid grid-cols-2 gap-4">
-        <div class="mb-6">
-            <label class="block text-sm font-bold" for="diagnostico">Diagnóstico Clínico:</label>
-            <textarea class="shadow appearance-none border rounded w-full h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      name="diagnostico" id="diagnostico" placeholder="Digite o diagnóstico clínico">{{ $atendimentos[0]['diagnostico'] ?? '' }}</textarea>
-        </div>
-        <div class="mb-6">
-            <label class="block text-sm font-bold" for="comorbidades">Comorbidades associadas:</label>
-            <textarea class="shadow appearance-none border rounded w-full h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      name="comorbidades" id="comorbidades" placeholder="Digite as comorbidades associadas">{{ $atendimentos[0]['comorbidades'] ?? '' }}</textarea>
-        </div>
-        <div class="mb-4">
-            <label class="block text-sm font-bold" for="ultima_internacao">Última internação:</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                   name="ultima_internacao" id="ultima-internacao" type="date" placeholder="DD/MM/AAAA"
-                   value="{{ $atendimentos[0]['ultima_internacao'] ?? '' }}">
-        </div>
-        <div class="mb-4">
-            <label class="block text-sm font-bold" for="medico_responsavel">Médico responsável:</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                   name="medico_responsavel" id="medico-responsavel" type="text" placeholder="Digite o nome do médico responsável"
-                   value="{{ $atendimentos[0]['medico_responsavel'] ?? '' }}">
-        </div>
-    </div>
-</div>
+                    <div class="border-b border-gray-300 mb-6">
+                        <h2 class="text-lg font-bold mb-2">Condições de Saúde</h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="mb-6">
+                                <label class="block text-sm font-bold" for="diagnostico">Diagnóstico Clínico:</label>
+                                <textarea class="shadow appearance-none border rounded w-full h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                          name="diagnostico" id="diagnostico" placeholder="Digite o diagnóstico clínico" readonly>{{ $atendimentos[0]['diagnostico'] ?? '' }}</textarea>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-bold" for="comorbidades">Comorbidades associadas:</label>
+                                <textarea class="shadow appearance-none border rounded w-full h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                          name="comorbidades" id="comorbidades" placeholder="Digite as comorbidades associadas" readonly>{{ $atendimentos[0]['comorbidades'] ?? '' }}</textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-bold" for="ultima_internacao">Última internação:</label>
+                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                       name="ultima_internacao" id="ultima-internacao" type="date" placeholder="DD/MM/AAAA"
+                                       value="{{ $atendimentos[0]['ultima_internacao'] ?? '' }}" readonly>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-bold" for="medico_responsavel">Médico responsável:</label>
+                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                       name="medico_responsavel" id="medico-responsavel" type="text" placeholder="Digite o nome do médico responsável"
+                                       value="{{ $atendimentos[0]['medico_responsavel'] ?? '' }}" readonly>
+                            </div>
+                        </div>
+                    </div>
 
-<!-- 4º tópico: Nível de prioridade -->
-<div class="mb-6 border-b border-gray-300">
-    <h2 class="text-lg font-bold mb-2">Nível de Prioridade</h2>
-    <div class="flex mb-4">
-        <label class="inline-flex items-center mr-4">
-            <input type="radio" class="form-radio h-5 w-5 text-red-500" name="prioridade" id="alta" value="alta" onfocus="this.blur()"
-                   {{ ($atendimentos[0]['prioridade'] ?? '') === 'alta' ? 'checked' : '' }}>
-            <span class="ml-2 font-bold text-red-500">Alta Prioridade</span>
-        </label>
-        <label class="inline-flex items-center mr-4">
-            <input type="radio" class="form-radio h-5 w-5 text-yellow-500" name="prioridade" id="media" value="media" onfocus="this.blur()"
-                   {{ ($atendimentos[0]['prioridade'] ?? '') === 'media' ? 'checked' : '' }}>
-            <span class="ml-2 font-bold text-yellow-500">Média Prioridade</span>
-        </label>
-        <label class="inline-flex items-center">
-            <input type="radio" class="form-radio h-5 w-5 text-green-500" name="prioridade" id="baixa" value="baixa" onfocus="this.blur()"
-                   {{ ($atendimentos[0]['prioridade'] ?? '') === 'baixa' ? 'checked' : '' }}>
-            <span class="ml-2 font-bold text-green-500">Baixa Prioridade</span>
-        </label>
-    </div>
-</div>
+                    <!-- 4º tópico: Nível de prioridade -->
+                    <div class="mb-6 border-b border-gray-300">
+                        <h2 class="text-lg font-bold mb-2">Nível de Prioridade</h2>
+                        <div class="flex mb-4">
+                            <label class="inline-flex items-center mr-4">
+                                <input type="radio" class="form-radio h-5 w-5 text-red-500" name="prioridade" id="alta" value="alta" disabled
+                                       {{ ($atendimentos[0]['prioridade'] ?? '') === 'alta' ? 'checked' : '' }}>
+                                <span class="ml-2 font-bold text-red-500">Alta Prioridade</span>
+                            </label>
+                            <label class="inline-flex items-center mr-4">
+                                <input type="radio" class="form-radio h-5 w-5 text-yellow-500" name="prioridade" id="media" value="media" disabled
+                                       {{ ($atendimentos[0]['prioridade'] ?? '') === 'media' ? 'checked' : '' }}>
+                                <span class="ml-2 font-bold text-yellow-500">Média Prioridade</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio h-5 w-5 text-green-500" name="prioridade" id="baixa" value="baixa" disabled
+                                       {{ ($atendimentos[0]['prioridade'] ?? '') === 'baixa' ? 'checked' : '' }}>
+                                <span class="ml-2 font-bold text-green-500">Baixa Prioridade</span>
+                            </label>
+                        </div>
+                    </div>
 
 
 
