@@ -1,5 +1,5 @@
 <div class="border-b border-gray-300 mb-6">
-<h2 class="text-lg font-bold mb-2">Informações</h2>
+<h4 class="text-lg font-bold mb-3">Informações</h4>
 
     <div class="grid grid-cols-2 gap-4">
         <div class="mb-4">

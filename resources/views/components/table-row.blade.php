@@ -67,103 +67,84 @@
         </td>
     </td>
     <td class="col-12  w-100 border-0 p-0 d-none " id="detalhes-{{$atendimento['id']}}">
-        <table class="w-100" >
-            <tbody>
-
-                <hr class="m-0 mb-2">
-                <tr class="row">
-                    <td class="col-2"></td>
-                    <td class="col">
-                        <div>
-
-                            <h6>Informações:</h6>
-                            <div class="row">
-                                <div class="col-6 d-flex flex-column">
-                                    <p class="m-0">Sexo: {{$atendimento['sexo']}} </p>
-                                    <p class="m-0">Data de Nascimento: {{ date('d/m/Y', strtotime($atendimento['data_nascimento'])) }} </p>
-                                    @php
-                                        $birthDate = new DateTime($atendimento['data_nascimento']);
-                                        $currentDate = new DateTime();
-                                        $age = $currentDate->diff($birthDate)->y;
-                                    @endphp
-
-    <p class="m-0">Idade: {{ $age }} anos</p>
-                                    <p class="m-0">Endereço: {{$atendimento['endereco']}} </p>
-                                </div>
-
-                                <div class="col-6 d-flex flex-column">
-                                    <p class="m-0">Contato: {{$atendimento['contato']}} </p>
-                                    <p class="m-0">Data de Cadastro: {{ date('d/m/Y', strtotime($atendimento['data_cadastro'])) }} </p>
-                                    <p class="m-0">Responsável pelo cadastro: {{$atendimento['responsavel']}} </p>
-                                </div>
-                            </div>
+    <table class="w-100">
+    <tbody>
+        <tr>
+            <td class="col-2"></td>
+            <td colspan="4">
+                <div>
+                    <h6>Informações:</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="m-0"><strong>Sexo:</strong> {{ $atendimento['sexo'] }}</p>
+                            <p class="m-0"><strong>Data de Nascimento:</strong> {{ date('d/m/Y', strtotime($atendimento['data_nascimento'])) }}</p>
+                            @php
+                                $birthDate = new DateTime($atendimento['data_nascimento']);
+                                $currentDate = new DateTime();
+                                $age = $currentDate->diff($birthDate)->y;
+                            @endphp
+                            <p class="m-0"><strong>Idade:</strong> {{ $age }} anos</p>
+                            <p class="m-0"><strong>Endereço:</strong> {{ $atendimento['endereco'] }}</p>
                         </div>
-                    </td>
-                </tr>
-
-                <tr class="row">
-                    <td class="col-2"></td>
-                    <td class="col">
-                        <hr class="m-2 mb-2">
-                    </td>
-                </tr>
-
-
-                <tr class="row">
-                    <td class="col-2"></td>
-                    <td class="col">
-                        <div>
-
-                            <h6>Unidade Básica de Saúde:</h6>
-                            <div class="row">
-                                <div class="col-6 d-flex flex-column">
-                                    <p class="m-0">Nome da UBS: {{$atendimento['ubs']}}</p>
-                                </div>
-
-                                <div class="col-6 d-flex flex-column">
-                                    <p class="m-0">ACS responsável: {{$atendimento['acs']}}</p>
-                                </div>
-                            </div>
+                        <div class="col-md-6">
+                            <p class="m-0"><strong>Contato:</strong> {{ $atendimento['contato'] }}</p>
+                            <p class="m-0"><strong>Data de Cadastro:</strong> {{ date('d/m/Y', strtotime($atendimento['data_cadastro'])) }}</p>
+                            <p class="m-0"><strong>Responsável pelo cadastro:</strong> {{ $atendimento['responsavel'] }}</p>
                         </div>
-                    </td>
-                </tr>
-
-                <tr class="row">
-                    <td class="col-2"></td>
-                    <td class="col">
-                        <hr class="m-2 mb-2">
-                    </td>
-                </tr>
-
-
-                <tr class="row">
-                    <td class="col-2"></td>
-                    <td class="col">
-                        <div>
-
-                            <h6>Condições de Saúde:</h6>
-                            <div >
-                                <div>
-                                    <p class="m-0" style="max-width: 90%;">Diagnóstico clínico: {{$atendimento['diagnostico']}}</p>
-                                    <p class="m-0" style="max-width: 90%;">Comorbidades associadas: {{$atendimento['comorbidades']}}</p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-6 d-flex flex-column">
-                                    <p class="m-0">Última internação: {{ date('d/m/Y', strtotime($atendimento['ultima_internacao'])) }}</p>
-                                </div>
-
-                                <div class="col-6 d-flex flex-column">
-                                    <p class="m-0">Médico responsável: {{$atendimento['medico_responsavel']}}</p>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-2"></td>
+            <td class="col">
+                <hr class="m-2 mb-2">
+            </td>
+        </tr>
+        <tr>
+            <td class="col-2"></td>
+            <td colspan="4">
+                <div>
+                    <h6>Unidade Básica de Saúde:</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="m-0"><strong>Nome da UBS:</strong> {{ $atendimento['ubs'] }}</p>
                         </div>
-                    </td>
-                </tr>
+                        <div class="col-md-6">
+                            <p class="m-0"><strong>ACS responsável:</strong> {{ $atendimento['acs'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-2"></td>
+            <td class="col">
+                <hr class="m-2 mb-2">
+            </td>
+        </tr>
+        <tr>
+            <td class="col-2"></td>
+            <td colspan="4">
+                <div>
+                    <h6>Condições de Saúde:</h6>
+                    <div>
+                        <p class="m-0" style="max-width: 90%;"><strong>Diagnóstico clínico:</strong> {{ $atendimento['diagnostico'] }}</p>
+                        <p class="m-0" style="max-width: 90%;"><strong>Comorbidades associadas:</strong> {{ $atendimento['comorbidades'] }}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="m-0"><strong>Última internação:</strong> {{ date('d/m/Y', strtotime($atendimento['ultima_internacao'])) }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="m-0"><strong>Médico responsável:</strong> {{ $atendimento['medico_responsavel'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
 
-                <tr class="row">
+                <!-- <tr class="row">
                     <td class="col-2"></td>
                     <td class="col">
                         <hr class="m-2 mb-2">
@@ -554,7 +535,7 @@
                             </div>
                         </div>
                     </td>
-                </tr>
+                </tr> -->
 
                 <tr class="row">
                     <td class="col-2"></td>
@@ -602,8 +583,8 @@
 
                             <select name="encaminhamento" class=" icon cursor-pointer mr-2 border border-gray-300 bg-white text-#186f65 hover:text-green-800 font-bold py-2 px-5 rounded-lg shadow-lg" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-right: 10px;">
                                 <option value="Primário" @if($atendimento['encaminhamento'] == 'Primário') selected @endif>Primário</option>
-                <option value="Secundário" @if($atendimento['encaminhamento'] == 'Secundário') selected @endif>Secundário</option>
-            </select>
+                                <option value="Secundário" @if($atendimento['encaminhamento'] == 'Secundário') selected @endif>Secundário</option>
+                            </select>
 
                             <button type="submit" class=" icon bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-2 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">Encaminhar
                             </button>
@@ -613,7 +594,7 @@
 
                 <tr class="row">
                     <td class="col-2"></td>
-                    <td class="col">
+                    <td>
                         <hr class="m-12 mb-8">
                     </td>
                 </tr>

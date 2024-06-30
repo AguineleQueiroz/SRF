@@ -11,17 +11,11 @@
         </h2>
     </x-slot>
 
+        <div class="modal-dialog modal-lg" style="min-width: 62%;" role="document"> <!-- Definindo uma largura mínima de 90% -->
+
 
             <div class="modal-content">
                 <div class="modal-body">
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-
-                <div class="py-4 mb-6 border-2 border-gray-300 shadow-md mx-auto" style="background-color: #186f65; max-width: 670px; margin-top: 20px;">
-                    <h1 class="text-2xl font-bold text-center text-white">Atualização</h1>
-                </div>
 
                 <div class="max-w-4xl mx-auto py-8 px-4">
                   <form action="/atualizar_paciente/{{ $atendimentos[0]['id']}}" method="post">
@@ -32,7 +26,7 @@
 
 
                       <div class="border-b border-gray-300 mb-6">
-                        <h2 class="text-lg font-bold mb-2">Informações</h2>
+                        
 
                         <div class="grid grid-cols-2 gap-4">
                             <div class="mb-4">
@@ -189,13 +183,14 @@
 
                       <!-- Botões de salvar e cancelar -->
                       <div class="flex justify-end mt-4">
-                        <button type="button" id="btnCancelar" class=" icon bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg mr-4" style="background-color: #ef4444; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Cancelar</button>
+                        <a href="{{route('dashboard')}}"id="btnCancelar" class=" icon bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg mr-4" style="background-color: #ef4444; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Cancelar</a>
                         <button type="submit" class=" icon bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Salvar</button>
                       </div>
                     </form>
                 </div>
               </div>
           </div>
+        </div>
 
   <style>
 
@@ -217,21 +212,6 @@
   </style>
 
   <script>
-    // Adicionando um evento de clique ao botão "Cancelar"
-    document.getElementById('btnCancelar').addEventListener('click', function() {
-      // Oculta o modal
-      document.getElementById('modalNovoPaciente').style.display = 'none';
-      // Remove o backdrop
-      var backdrop = document.querySelector('.modal-backdrop');
-      if (backdrop) {
-        console.log(backdrop)
-        // backdrop.classList.remove
-        const body=document.getElementById('app-body');
-        body.classList.remove('modal-open');
-        body.removeChild(backdrop);
-      }
-
-    });
 
     function toggleField(checkbox) {
       var target = document.getElementById(checkbox.dataset.target);
@@ -245,7 +225,7 @@
     }
 
     // Função para permitir apenas números em um campo de entrada
-function allowOnlyNumbers(inputElement) {
+    function allowOnlyNumbers(inputElement) {
     inputElement.addEventListener('keydown', function (event) {
         // Permitir teclas especiais como backspace, delete, setas de navegação, etc.
         if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'Tab') {

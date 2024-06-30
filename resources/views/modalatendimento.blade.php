@@ -9,9 +9,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
 
-                <div class="py-4 mb-6 border-2 border-gray-300 shadow-md mx-auto" style="background-color: #186f65; max-width: 670px; margin-top: 20px;">
-                    <h1 class="text-2xl font-bold text-center text-white">Cadastro de Pacientes</h1>
-                </div>
 
                 <div class="max-w-4xl mx-auto py-8 px-4">
                   <form action="{{route('SalvarDados')}}" method="post">

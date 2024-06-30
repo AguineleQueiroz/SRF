@@ -43,7 +43,7 @@
 
                                     @foreach($motivos as $key => $motivo)
                                     <label for="motivos" class="flex items-center">
-                                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="motivos[]" value="{{ $key }}" onchange="toggleField(this)" data-target="{{ $key }}" id="{{ $key }}">
+                                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="motivos[]" value="{{ $key }}" onchange="toggleField(this)" onfocus="this.blur()" data-target="{{ $key }}" id="{{ $key }}">
                                         <span class="ml-2">{{ $motivo }}</span>
                                     </label>
                                     <textarea name="motivo_descricao[{{ $key }}]" id="{{ $key }}_descricao" class="hidden shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-y" placeholder="Explique o motivo"></textarea>
@@ -90,23 +90,23 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="grid grid-cols-1 gap-4">
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_movase" name="atividades[]" value="Mova_se">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_movase" name="atividades[]" onfocus="this.blur()" value="Mova_se">
                     <span class="ml-2">Grupo de caminhada MOVA-SE</span>
                 </label>
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_mdms" name="atividades[]" value="Menos_dor_mais_saude">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_mdms" name="atividades[]" onfocus="this.blur()" value="Menos_dor_mais_saude">
                     <span class="ml-2">Grupo de dor crônica Menos dor mais saúde</span>
                 </label>
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_peso" name="atividades[]" value="Peso_saudavel">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_peso" name="atividades[]" onfocus="this.blur()" value="Peso_saudavel">
                     <span class="ml-2">Grupo funcional peso saudável</span>
                 </label>
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_geracao" name="atividades[]" value="Geracao_esporte">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_geracao" name="atividades[]" onfocus="this.blur()" value="Geracao_esporte">
                     <span class="ml-2">Geração Esporte</span>
                 </label>
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_nda" name="atividades[]" value="NDA">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_nda" name="atividades[]" onfocus="this.blur()" value="NDA">
                     <span class="ml-2">Não participa de nenhuma atividade ou grupo</span>
                 </label>
             </div>
@@ -119,23 +119,23 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="grid grid-cols-1 gap-4">
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_movase" name="atividades_passadas[]" value="Mova_se_RA">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_movase" name="atividades_passadas[]" onfocus="this.blur()" value="Mova_se_RA">
                     <span class="ml-2">Grupo de caminhada MOVA-SE</span>
                 </label>
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_mdms" name="atividades_passadas[]" value="Mais_saude_RA">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_mdms" name="atividades_passadas[]" onfocus="this.blur()" value="Mais_saude_RA">
                     <span class="ml-2">Grupo de dor crônica Menos dor mais saúde</span>
                 </label>
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_peso" name="atividades_passadas[]" value="Peso_saudavel_RA">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_peso" name="atividades_passadas[]" onfocus="this.blur()" value="Peso_saudavel_RA">
                     <span class="ml-2">Grupo funcional peso saudável</span>
                 </label>
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_geracao" name="atividades_passadas[]" value="Geracao_esporte_RA">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_geracao" name="atividades_passadas[]" onfocus="this.blur()" value="Geracao_esporte_RA">
                     <span class="ml-2">Geração Esporte</span>
                 </label>
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_npa" name="atividades_passadas[]" value="NDA_RA">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_npa" name="atividades_passadas[]" onfocus="this.blur()" value="NDA_RA">
                     <span class="ml-2">Nunca participou das atividades ou grupos acima</span>
                 </label>
             </div>
@@ -181,19 +181,19 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="grid grid-cols-1 gap-4">
                                 <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_menos_de_10" name="sessoes[]" value="Menos_de_10" @if(is_array(old('sessoes')) && in_array('Menos_de_10', old('sessoes'))) checked @endif>
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_menos_de_10" name="sessoes[]" onfocus="this.blur()" value="Menos_de_10" @if(is_array(old('sessoes')) && in_array('Menos_de_10', old('sessoes'))) checked @endif>
                                     <span class="ml-2">Menos de 10</span>
                                 </label>
                                 <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_10_20" name="sessoes[]" value="10_à_20" @if(is_array(old('sessoes')) && in_array('10_à_20', old('sessoes'))) checked @endif>
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_10_20" name="sessoes[]" onfocus="this.blur()" value="10_à_20" @if(is_array(old('sessoes')) && in_array('10_à_20', old('sessoes'))) checked @endif>
                                     <span class="ml-2">10-20</span>
                                 </label>
                                 <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_20_30" name="sessoes[]" value="20_à_30" @if(is_array(old('sessoes')) && in_array('20_à_30', old('sessoes'))) checked @endif>
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_20_30" name="sessoes[]" onfocus="this.blur()" value="20_à_30" @if(is_array(old('sessoes')) && in_array('20_à_30', old('sessoes'))) checked @endif>
                                     <span class="ml-2">20-30</span>
                                 </label>
                                 <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_mais_de_30" name="sessoes[]" value="Mais_de_30" @if(is_array(old('sessoes')) && in_array('Mais_de_30', old('sessoes'))) checked @endif>
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_mais_de_30" name="sessoes[]" onfocus="this.blur()" value="Mais_de_30" @if(is_array(old('sessoes')) && in_array('Mais_de_30', old('sessoes'))) checked @endif>
                                     <span class="ml-2">Mais de 30</span>
                                 </label>
                             </div>
@@ -205,11 +205,11 @@
                         <label class="block text-sm font-bold">Assiduidade do paciente:</label>
                         <div class="flex">
                             <label class="inline-flex items-center mr-4">
-                                <input type="radio" class="form-radio h-5 w-5 text-blue-500" id="assiduo_check" name="assiduidade" value="assiduo" @if(old('assiduidade') == 'assiduo') checked @endif required>
+                                <input type="radio" class="form-radio h-5 w-5 text-blue-500" id="assiduo_check" name="assiduidade" onfocus="this.blur()" value="assiduo" @if(old('assiduidade') == 'assiduo') checked @endif required>
                                 <span class="ml-2">Assíduo</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio h-5 w-5 text-blue-500" id="nao_assiduo_check" name="assiduidade" value="nao_assiduo" @if(old('assiduidade') == 'nao_assiduo') checked @endif required>
+                                <input type="radio" class="form-radio h-5 w-5 text-blue-500" id="nao_assiduo_check" name="assiduidade" onfocus="this.blur()" value="nao_assiduo" @if(old('assiduidade') == 'nao_assiduo') checked @endif required>
                                 <span class="ml-2">Não assíduo</span>
                             </label>
                         </div>
@@ -239,6 +239,7 @@
                         <button type="submit" id="btnNext" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Salvar</button>
                     </div>
                 </form>
+
                 @endif
 
                 <!-- Script para exibir mensagens de erro com SweetAlert -->
