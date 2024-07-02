@@ -11,6 +11,13 @@
         </h2>
     </x-slot>
 
+    <style>
+        .icon:hover {
+        animation: jump 0.3s ease;
+        }
+
+    </style>
+
     <div class="container mx-auto px-4">
         <h1 class="text-2xl font-bold mb-4"></h1>
 
@@ -31,7 +38,7 @@
                             <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($ficha->created_at)->format('d/m/Y') }}</td>
                             <td class="py-2 px-4 border-b text-center">{{ $ficha->tipo_ficha }}</td>
                             <td class="py-2 px-4 border-b text-center">
-                                <button class=" icon bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);" data-toggle="modal" data-target="#viewFichaModal{{ $ficha->id }}">
+                                <button class="icon bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5); animation: jump 0.3s ease !important;" data-toggle="modal" data-target="#viewFichaModal{{ $ficha->id }}">
                                     Visualizar
                                 </button>
                                 <!-- Modals for viewing details -->

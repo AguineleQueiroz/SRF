@@ -458,86 +458,92 @@ class AtendimentoController extends Controller
     }
 
     public function listarAtendimentos(Request $request)
-    {
-        $user = Auth::user(); // Obtém o usuário autenticado
+{
+    $user = Auth::user(); // Obtém o usuário autenticado
 
-        $filtrarAtendimentos = $request->query('filtrar_atendimentos', 'false') === 'true';
-        $atendimentos = [];
+    $filtrarAtendimentos = $request->query('filtrar_atendimentos', 'false') === 'true';
+    $atendimentos = [];
 
-        if ($filtrarAtendimentos) {
-            $atendimentos = Atendimento::where('encaminhamento', $user->attention_type)->get();
-        } else {
-            $atendimentos = Atendimento::all();
-            $atendimentosids = Atendimento::all();
-        }
-
-       // Obter a data de hoje
-        $today = Carbon::today();
-
-        // Filtrar os históricos para pegar apenas aqueles da data de hoje
-        $historicos_encaminhamentos = EncaminhamentoHistorico::where('encaminhamento', $user->attention_type)
-            ->whereDate('created_at', $today)
-            ->get();
-
-
-        $message = '';
-        $alertType = '';
-
-        if ($historicos_encaminhamentos->count() > 0) {
-            $message = 'Você tem novos encaminhamentos hoje.';
-            $alertType = 'success';
-        } else {
-            $message = 'Não há novos encaminhamentos hoje.';
-            $alertType = 'danger';
-        }
-
-        // return $historicos_encaminhamentos;
-        // Filtra os atendimentos pelo user_id do usuário autenticado
-
-        $dados_basicos = [];
-        $dados_primario = [];
-        $dados_secundario = [];
-        $atendimentosFiltrados = [];
-
-        foreach ($atendimentos as $atendimento) {
-            $atendimentoArray = $atendimento->toArray();
-
-            $dados_basicos = DadosBasicos::find($atendimentoArray['tb_dados_basicos_id']);
-            $dados_primario = AtendimentoPrimario::find($atendimentoArray['tb_atendimento_primario_id']);
-            $dados_secundario = AtendimentoSecundario::find($atendimentoArray['tb_atendimento_secundario_id']);
-
-            if (!$dados_basicos || !$dados_primario || !$dados_secundario) {
-                // Se qualquer um dos registros não for encontrado, pule este atendimento
-                continue;
-            }
-
-            $dados_basicos = $dados_basicos->toArray();
-            $dados_primario = $dados_primario->toArray();
-            $dados_secundario = $dados_secundario->toArray();
-
-            $responsavel = $user ? $user->name : 'N/A';
-
-            $atendimentosFiltrados[] = array_merge($dados_basicos, $dados_primario, $dados_secundario, [
-                'responsavel' => $responsavel,
-                'atendimento_id' => $atendimentoArray['id'],
-                'encaminhamento' => $atendimentoArray['encaminhamento']
-            ]);
-        }
-
-        $search = $request->input('search');
-        if (isset($search)) {
-            $atendimentos_filtrados = [];
-            foreach ($atendimentosFiltrados as $atendimento) {
-                if (str_contains($atendimento['nome'], $search) || str_contains($atendimento['cartao_sus'], $search)) {
-                    $atendimentos_filtrados[] = $atendimento;
-                }
-            }
-            $atendimentosFiltrados = $atendimentos_filtrados;
-        }
-
-        return view('dashboard', ['atendimentos' => $atendimentosFiltrados,'message' => $message,
-                                'alertType' => $alertType], compact('historicos_encaminhamentos'));
+    if ($filtrarAtendimentos) {
+        $atendimentos = Atendimento::where('encaminhamento', $user->attention_type)->get();
+    } else {
+        $atendimentos = Atendimento::all();
     }
+
+    // Obter a data de hoje
+    $today = Carbon::today();
+
+    // Filtrar os históricos para pegar apenas aqueles da data de hoje
+    $historicos_encaminhamentos = EncaminhamentoHistorico::where('encaminhamento', $user->attention_type)
+        ->whereDate('created_at', $today)
+        ->get();
+
+    $message = '';
+    $alertType = '';
+
+    if ($historicos_encaminhamentos->count() > 0) {
+        $message = 'Você tem novos encaminhamentos hoje.';
+        $alertType = 'success';
+    } else {
+        $message = 'Não há novos encaminhamentos hoje.';
+        $alertType = 'danger';
+    }
+
+    // Filtra os atendimentos pelo user_id do usuário autenticado
+    $dados_basicos = [];
+    $dados_primario = [];
+    $dados_secundario = [];
+    $atendimentosFiltrados = [];
+
+    foreach ($atendimentos as $atendimento) {
+        $atendimentoArray = $atendimento->toArray();
+
+        $dados_basicos = DadosBasicos::find($atendimentoArray['tb_dados_basicos_id']);
+        $dados_primario = AtendimentoPrimario::find($atendimentoArray['tb_atendimento_primario_id']);
+        $dados_secundario = AtendimentoSecundario::find($atendimentoArray['tb_atendimento_secundario_id']);
+
+        if (!$dados_basicos || !$dados_primario || !$dados_secundario) {
+            // Se qualquer um dos registros não for encontrado, pule este atendimento
+            continue;
+        }
+
+        $dados_basicos = $dados_basicos->toArray();
+        $dados_primario = $dados_primario->toArray();
+        $dados_secundario = $dados_secundario->toArray();
+
+        $responsavel = $user ? $user->name : 'N/A';
+
+        $atendimentosFiltrados[] = array_merge($dados_basicos, $dados_primario, $dados_secundario, [
+            'responsavel' => $responsavel,
+            'atendimento_id' => $atendimentoArray['id'],
+            'encaminhamento' => $atendimentoArray['encaminhamento']
+        ]);
+    }
+
+    $search = $request->input('search');
+    if (isset($search)) {
+        $search = strtolower($search);
+        $atendimentos_filtrados = [];
+        foreach ($atendimentosFiltrados as $atendimento) {
+            if (
+                str_contains(strtolower($atendimento['nome']), $search) ||
+                str_contains(strtolower($atendimento['cartao_sus']), $search) ||
+                str_contains(strtolower($atendimento['prioridade']), $search) ||
+                str_contains(strtolower($atendimento['responsavel']), $search)
+            ) {
+                $atendimentos_filtrados[] = $atendimento;
+            }
+        }
+        $atendimentosFiltrados = $atendimentos_filtrados;
+    }
+
+    return view('dashboard', [
+        'atendimentos' => $atendimentosFiltrados,
+        'message' => $message,
+        'alertType' => $alertType
+    ], compact('historicos_encaminhamentos'));
+}
+
 
     public function encaminhar(Request $request)
     {

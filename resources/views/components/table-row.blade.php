@@ -67,150 +67,295 @@
         </td>
     </td>
 
-    
-    <td class="border-t" id="detalhes-{{$atendimento['id']}}"> 
-    
-    
-    <table class="w-100">
-
-    <tbody>
-        
-        <tr>
-            <td class="col-2"></td>
-            <td colspan="4">
-                <div>
-                    <h6>Informações:</h6>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="m-0"><strong>Sexo:</strong> {{ $atendimento['sexo'] }}</p>
-                            <p class="m-0"><strong>Data de Nascimento:</strong> {{ date('d/m/Y', strtotime($atendimento['data_nascimento'])) }}</p>
-                            @php
-                                $birthDate = new DateTime($atendimento['data_nascimento']);
-                                $currentDate = new DateTime();
-                                $age = $currentDate->diff($birthDate)->y;
-                            @endphp
-                            <p class="m-0"><strong>Idade:</strong> {{ $age }} anos</p>
-                            <p class="m-0"><strong>Endereço:</strong> {{ $atendimento['endereco'] }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="m-0"><strong>Contato:</strong> {{ $atendimento['contato'] }}</p>
-                            <p class="m-0"><strong>Data de Cadastro:</strong> {{ date('d/m/Y', strtotime($atendimento['data_cadastro'])) }}</p>
-                            <p class="m-0"><strong>Responsável pelo cadastro:</strong> {{ $atendimento['responsavel'] }}</p>
+    <td class="col-12 w-100 border-0 p-0 d-none" id="detalhes-{{$atendimento['id']}}">
+        <table class="w-100">
+            <tbody>
+                <hr class="m-0 mb-2">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Informações:</h6>
+                        <div class="row">
+                            <div class="col-6 d-flex flex-column">
+                                <p class="m-0">Sexo: {{$atendimento['sexo']}}</p>
+                                <p class="m-0">Data de Nascimento: {{ date('d/m/Y', strtotime($atendimento['data_nascimento'])) }}</p>
+                                @php
+                                    $birthDate = new DateTime($atendimento['data_nascimento']);
+                                    $currentDate = new DateTime();
+                                    $age = $currentDate->diff($birthDate)->y;
+                                @endphp
+                                <p class="m-0">Idade: {{ $age }} anos</p>
+                                <p class="m-0">Endereço: {{$atendimento['endereco']}}</p>
+                            </div>
+                            <div class="col-6 d-flex flex-column">
+                                <p class="m-0">Contato: {{$atendimento['contato']}}</p>
+                                <p class="m-0">Data de Cadastro: {{ date('d/m/Y', strtotime($atendimento['data_cadastro'])) }}</p>
+                                <p class="m-0">Responsável pelo cadastro: {{$atendimento['responsavel']}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </td>
-        </tr>
-        <tr class="border-t"></tr>
-        <tr>
-            <td class="col-2"></td>
-            <td colspan="4">
-                <div>
-                    <h6>Unidade Básica de Saúde:</h6>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="m-0"><strong>Nome da UBS:</strong> {{ $atendimento['ubs'] }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="m-0"><strong>ACS responsável:</strong> {{ $atendimento['acs'] }}</p>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Unidade Básica de Saúde:</h6>
+                        <div class="row">
+                            <div class="col-6 d-flex flex-column">
+                                <p class="m-0">Nome da UBS: {{$atendimento['ubs']}}</p>
+                            </div>
+                            <div class="col-6 d-flex flex-column">
+                                <p class="m-0">ACS responsável: {{$atendimento['acs']}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </td>
-        </tr>
-        <tr class="border-t"></tr>
-        <tr>
-            <td class="col-2"></td>
-            <td colspan="4">
-                <div>
-                    <h6>Condições de Saúde:</h6>
-                    <div>
-                        <p class="m-0" style="max-width: 90%;"><strong>Diagnóstico clínico:</strong> {{ $atendimento['diagnostico'] }}</p>
-                        <p class="m-0" style="max-width: 90%;"><strong>Comorbidades associadas:</strong> {{ $atendimento['comorbidades'] }}</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="m-0"><strong>Última internação:</strong> {{ date('d/m/Y', strtotime($atendimento['ultima_internacao'])) }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="m-0"><strong>Médico responsável:</strong> {{ $atendimento['medico_responsavel'] }}</p>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Condições de Saúde:</h6>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="m-0" style="max-width: 90%;">Diagnóstico clínico: {{$atendimento['diagnostico']}}</p>
+                                <p class="m-0" style="max-width: 90%;">Comorbidades associadas: {{$atendimento['comorbidades']}}</p>
+                            </div>
+                            <div class="col-6 d-flex flex-column">
+                                <p class="m-0">Última internação: {{ date('d/m/Y', strtotime($atendimento['ultima_internacao'])) }}</p>
+                            </div>
+                            <div class="col-6 d-flex flex-column">
+                                <p class="m-0">Médico responsável: {{$atendimento['medico_responsavel']}}</p>
+                            </div>
                         </div>
                     </div>
-
-
                 </div>
-            </td>
-        </tr>
 
-        <tr class="border-t"></tr>
+                {{-- <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Motivos que levou o paciente a procurar o serviço de saúde:</h6>
+                        <div>
+                            @if($atendimento['dor'])
+                                Dor: {!! $atendimento['dor_descricao'] !!}
+                            @endif
+                            @if($atendimento['incapacidade'])
+                                Incapacidade: {!! $atendimento['incapacidade_descricao'] !!}
+                            @endif
+                            @if($atendimento['osteomusculares'])
+                                Osteomusculares: {!! $atendimento['osteomusculares_descricao'] !!}
+                            @endif
+                            @if($atendimento['neurologicas'])
+                                Neurológicas: {!! $atendimento['neurologicas_descricao'] !!}
+                            @endif
+                            @if($atendimento['uroginecologicas'])
+                                Uroginecológicas: {!! $atendimento['uroginecologicas_descricao'] !!}
+                            @endif
+                            @if($atendimento['cardiovasculares'])
+                                Cardiovasculares: {!! $atendimento['cardiovasculares_descricao'] !!}
+                            @endif
+                            @if($atendimento['respiratorias'])
+                                Respiratórias: {!! $atendimento['respiratorias_descricao'] !!}
+                            @endif
+                            @if($atendimento['oncologicas'])
+                                Oncológicas: {!! $atendimento['oncologicas_descricao'] !!}
+                            @endif
+                            @if($atendimento['pediatria'])
+                                Pediatria: {!! $atendimento['pediatria_descricao'] !!}
+                            @endif
+                            @if($atendimento['multiplas'])
+                                Múltiplas: {!! $atendimento['multiplas_descricao'] !!}
+                            @endif
+                        </div>
+                    </div>
+                </div> --}}
 
-                <tr class="row">
-                    <td class="col w-1/5 px-8 py-6 text-right align-middle flex justify-end">
-                        <hr class="m-4 mb-2">
-                    </td>
-                </tr>
+                {{-- <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Queixa do paciente:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['queixa']}}</p>
+                        </div>
+                    </div>
+                </div>
 
-                <td class="col w-1/5 px-4 py-2 text-right align-middle flex justify-end">
-                    <td class=" icon col w-1/5 px-4 py-2 text-right align-middle">
-                        <a href="/editar_paciente/{{ $atendimento['id'] }}">
-                            <button type="button" class="text-white font-bold py-2 px-4 rounded shadow-md"
-                                style="background-color: #186f65;">Editar
-                            </button>
-                        </a>
-                    </td>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Principais achados do Exame Físico:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['achados_exame_fisico']}}</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Testes padronizados realizados:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['testes_padronizados']}}</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Condição funcional do paciente:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['condicao_funcional']}}</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Fatores ambientais e pessoais Primário:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['fatores_ambientais']}}</p>
+                        </div>
+                    </div>
+                </div> --}}
 
-                    <td class="icon col w-1/5 px-4 py-2 text-right align-middle">
-                        <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md"
-                            style="background-color: #186f65; white-space: nowrap;" data-toggle="modal"
-                            data-target="#modalAddNovaFichaAtendimento" data-atendimento-id="{{ $atendimento['id'] }}">
-                            + Adicionar Ficha
-                        </button>
-                    </td>
+                {{-- <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Diagnóstico Fisioterapêutico Primário:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['diagnostico_fisioterapeutico']}}</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Atividades ou grupos operativos dos quais o usuário participa:</h6>
+                        <div>
+                            <p class="m-0">{{str_replace('_', ' ', $atendimento['atividades'])}}</p>
+                        </div>
+                    </div>
+                </div>
 
-                    <td class="icon col w-1/5 px-4 py-2 text-right align-middle">
-                        <a href="/listar_fichas_paciente/{{ $atendimento['id'] }}">
-                            <button type="button" class="text-white font-bold py-2 px-4 rounded shadow-md"
-                                style="background-color: #186f65; white-space: nowrap;">
-                                Listar Fichas do Paciente
-                            </button>
-                        </a>
-                    </td>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Atividades ou grupos operativos dos quais o usuário participou:</h6>
+                        <div>
+                            <p class="m-0">{{str_replace('_', ' ', $atendimento['atividades_passadas'])}}</p>
+                        </div>
+                    </div>
+                </div>
 
-                        <br><br>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Sessão exclusiva para atenção secundária:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">Condição funcional atual do paciente: {{$atendimento['funcional_condicao']}}</p>
+                            <p class="m-0" style="max-width: 90%;">Tratamento ofertado: {{$atendimento['tratamento_ofertado']}}</p>
+                            <p class="m-0" style="max-width: 90%;">Evolução funcional do usuário desde o início: {{$atendimento['evolucao_funcional']}}</p>
+                        </div>
+                    </div>
+                </div>
 
-                        
-                        <form action="{{ route('encaminhar') }}" method="post">
-                        @csrf
-                        <td class="col w-1/5 px-4 py-2 text-right align-middle">
-                            <div class="flex justify-end items-center">
-                                <input type="hidden" name="atendimento_id" value="{{ $atendimento['id'] }}">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Número de sessões realizadas:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{str_replace('_', ' ', $atendimento['sessoes'])}}</p>
+                        </div>
+                    </div>
+                </div>
 
-                                <select name="encaminhamento" class=" icon cursor-pointer mr-2 border border-gray-300 bg-white text-#186f65 hover:text-green-800 font-bold py-2 px-5 rounded-lg shadow-lg" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-right: 10px;">
-                                    <option value="Primário" @if($atendimento['encaminhamento'] == 'Primário') selected @endif>Primário</option>
-                                    <option value="Secundário" @if($atendimento['encaminhamento'] == 'Secundário') selected @endif>Secundário</option>
-                                </select>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Assiduidade do paciente:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{str_replace('_', ' ', $atendimento['assiduidade'])}}</p>
+                        </div>
+                    </div>
+                </div>
 
-                                <button type="submit" class=" icon bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-2 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">Encaminhar
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Fatores ambientais e pessoais Secundários:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['ambientais_pessoais']}}</p>
+                        </div>
+                    </div>
+                </div> --}}
+
+                {{-- <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Diagnóstico Fisioterapêutico Secundário:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['diagnostico_fisio']}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Critérios para alta fisioterapêutica do setor secundário:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['criterios']}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <h6>Justificativa para contrarreferência para a APS:</h6>
+                        <div>
+                            <p class="m-0" style="max-width: 90%;">{{$atendimento['justificativa']}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                --}}
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <a href="/editar_paciente/{{ $atendimento['id'] }}">
+                                    <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65;">Editar</button>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65; white-space: nowrap;" data-toggle="modal" data-target="#modalAddNovaFichaAtendimento" data-atendimento-id="{{ $atendimento['id'] }}">
+                                    + Adicionar Ficha
                                 </button>
                             </div>
-                        </td>
-                    </form>
-                </td>
+                            <div class="col">
+                                <a href="/listar_fichas_paciente/{{ $atendimento['id'] }}">
+                                    <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65; white-space: nowrap;">Listar Fichas do Paciente</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <tr class="row">
-                    <td class="col-2"></td>
-                    <td>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
                         <hr class="m-12 mb-8">
-                    </td>
-                </tr>
-
+                    </div>
+                </div>
             </tbody>
         </table>
     </td>
+
 
 
 </tr>

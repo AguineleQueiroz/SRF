@@ -105,6 +105,7 @@
 
 
     <script>
+        // Função para filtrar os atendimentos
         function filtrarAtendimentos() {
             const checkbox = document.getElementById('switchVerAtendimentos');
             const form = document.getElementById('dashboardForm');
@@ -119,19 +120,27 @@
             window.location.href = url.toString();
         }
 
-        // Preserve the checkbox state on page reload
+        // Preservar o estado do checkbox e inicializar o valor do campo de pesquisa no recarregamento da página
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const filtrarAtendimentos = urlParams.get('filtrar_atendimentos');
             const checkbox = document.getElementById('switchVerAtendimentos');
+            const searchInput = document.getElementById('searchInput3');
 
             if (filtrarAtendimentos === 'true') {
                 checkbox.checked = true;
             } else {
                 checkbox.checked = false;
             }
+
+            // Inicializar o valor do campo de pesquisa com o valor do parâmetro 'search' da URL
+            const search = urlParams.get('search');
+            if (search) {
+                searchInput.value = search;
+            }
         };
     </script>
+
 
 
 

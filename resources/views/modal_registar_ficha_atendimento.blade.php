@@ -10,6 +10,13 @@
                 $user = Auth::user();
                 @endphp
 
+                @if($user->attention_type != 'Primário' && $user->attention_type != 'Secundário')
+                <br><br>
+                <div class="alert alert-danger" role="alert">
+                    O seu tipo de usuário não pode preencher uma ficha.
+                  </div>
+                @endif
+
                 @if($user->attention_type == 'Primário')
                 <!-- Formulário para Atenção Primária -->
                 <form action="/ficha_atendimento" method="POST">
