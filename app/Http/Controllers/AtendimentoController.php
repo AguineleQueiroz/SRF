@@ -527,9 +527,7 @@ class AtendimentoController extends Controller
         foreach ($atendimentosFiltrados as $atendimento) {
             if (
                 str_contains(strtolower($atendimento['nome']), $search) ||
-                str_contains(strtolower($atendimento['cartao_sus']), $search) ||
-                str_contains(strtolower($atendimento['prioridade']), $search) ||
-                str_contains(strtolower($atendimento['responsavel']), $search)
+                str_contains(strtolower($atendimento['cartao_sus']), $search)
             ) {
                 $atendimentos_filtrados[] = $atendimento;
             }
@@ -579,17 +577,33 @@ class AtendimentoController extends Controller
 
 
     public function listar_fichas_paciente($id)
-    {
-        // Ordena as fichas pela coluna 'created_at' em ordem decrescente, filtrando pelo 'atendimento_id'
-        $fichas = FichaAtendimento::where('atendimento_id', $id)
-                                    ->with('motivoDescricoes')
-                                    ->orderBy('created_at', 'desc')
-                                    ->get();
+{
+    // Ordena as fichas pela coluna 'created_at' em ordem decrescente, filtrando pelo 'atendimento_id'
+    $fichas = FichaAtendimento::where('atendimento_id', $id)
+                                ->with('motivoDescricoes')
+                                ->orderBy('created_at', 'desc')
+                                ->get()
+                                ->map(function($ficha) {
+                                    $ficha->atividades = $this->formatAtividades($ficha->atividades);
+                                    $ficha->atividades_passadas = $this->formatAtividades($ficha->atividades_passadas);
+                                    return $ficha;
+                                });
 
+    // Retorna a view com as fichas ordenadas
+    return view('atendimentos.app_fichas_atendimentos', compact('fichas'));
+}
 
-        // Retorna a view com as fichas ordenadas
-        return view('atendimentos.app_fichas_atendimentos', compact('fichas'));
+private function formatAtividades($atividadesJson)
+{
+    $atividades = json_decode($atividadesJson, true);
+    if (is_array($atividades)) {
+        return implode(', ', array_map(function($atividade) {
+            return ucwords(str_replace('_', ' ', $atividade));
+        }, $atividades));
     }
+    return 'N/A';
+}
+
 
 
 

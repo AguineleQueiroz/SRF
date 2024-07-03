@@ -144,7 +144,7 @@ public function update(Request $request, $id)
         AtendimentoSecundario::where('id', $atendimento_secundario_id)->update($atendimento_secundario);
 
         // Redireciona de volta com uma mensagem de sucesso
-        return back()->with('success', 'Atendimento atualizado com sucesso.');
+        return redirect('/dashboard')->with('success', 'Atendimento atualizado com sucesso.');
     } catch (\Exception $exception) {
         return $exception;
     }

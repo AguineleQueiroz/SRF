@@ -131,6 +131,7 @@
                 </div>
 
 
+                <br><br><br><br>
 
                 <div class="row">
                     <div class="col-2"></div>
@@ -147,32 +148,27 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <a href="/listar_fichas_paciente/{{ $atendimento['id'] }}">
+                                <a href="/listar_fichas_paciente/{{ $atendimento['id'] }}" target="_blank">
                                     <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65; white-space: nowrap;">Listar Fichas do Paciente</button>
                                 </a>
                             </div>
                             <div class="col">
-                            <form action="{{ route('encaminhar') }}" method="post">
-                                @csrf
-                                <td class="col w-1/5 px-4 py-2 text-right align-middle">
+                                <form action="{{ route('encaminhar') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="atendimento_id" value="{{ $atendimento['id'] }}">
                                     <div class="flex justify-end items-center">
-                                        <input type="hidden" name="atendimento_id" value="{{ $atendimento['id'] }}">
-
-                                        <select name="encaminhamento" class=" icon cursor-pointer mr-2 border border-gray-300 bg-white text-#186f65 hover:text-green-800 font-bold py-2 px-5 rounded-lg shadow-lg" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-right: 10px;">
+                                        <select name="encaminhamento" class="icon cursor-pointer mr-2 border border-gray-300 bg-white text-#186f65 hover:text-green-800 font-bold py-2 px-5 rounded-lg shadow-lg" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-right: 10px;">
                                             <option value="Primário" @if($atendimento['encaminhamento'] == 'Primário') selected @endif>Primário</option>
-                            <option value="Secundário" @if($atendimento['encaminhamento'] == 'Secundário') selected @endif>Secundário</option>
-                        </select>
-
-                                        <button type="submit" class=" icon bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-2 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">Encaminhar
-                                        </button>
+                                            <option value="Secundário" @if($atendimento['encaminhamento'] == 'Secundário') selected @endif>Secundário</option>
+                                        </select>
+                                        <button type="submit" class="icon bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-2 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">Encaminhar</button>
                                     </div>
-                                </td>
-                            </form>
-                        </div>
-
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="row">
                     <div class="col-2"></div>
