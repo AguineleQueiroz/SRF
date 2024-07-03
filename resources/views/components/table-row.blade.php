@@ -130,198 +130,7 @@
                     </div>
                 </div>
 
-                {{-- <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Motivos que levou o paciente a procurar o serviço de saúde:</h6>
-                        <div>
-                            @if($atendimento['dor'])
-                                Dor: {!! $atendimento['dor_descricao'] !!}
-                            @endif
-                            @if($atendimento['incapacidade'])
-                                Incapacidade: {!! $atendimento['incapacidade_descricao'] !!}
-                            @endif
-                            @if($atendimento['osteomusculares'])
-                                Osteomusculares: {!! $atendimento['osteomusculares_descricao'] !!}
-                            @endif
-                            @if($atendimento['neurologicas'])
-                                Neurológicas: {!! $atendimento['neurologicas_descricao'] !!}
-                            @endif
-                            @if($atendimento['uroginecologicas'])
-                                Uroginecológicas: {!! $atendimento['uroginecologicas_descricao'] !!}
-                            @endif
-                            @if($atendimento['cardiovasculares'])
-                                Cardiovasculares: {!! $atendimento['cardiovasculares_descricao'] !!}
-                            @endif
-                            @if($atendimento['respiratorias'])
-                                Respiratórias: {!! $atendimento['respiratorias_descricao'] !!}
-                            @endif
-                            @if($atendimento['oncologicas'])
-                                Oncológicas: {!! $atendimento['oncologicas_descricao'] !!}
-                            @endif
-                            @if($atendimento['pediatria'])
-                                Pediatria: {!! $atendimento['pediatria_descricao'] !!}
-                            @endif
-                            @if($atendimento['multiplas'])
-                                Múltiplas: {!! $atendimento['multiplas_descricao'] !!}
-                            @endif
-                        </div>
-                    </div>
-                </div> --}}
 
-                {{-- <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Queixa do paciente:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['queixa']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Principais achados do Exame Físico:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['achados_exame_fisico']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Testes padronizados realizados:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['testes_padronizados']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Condição funcional do paciente:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['condicao_funcional']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Fatores ambientais e pessoais Primário:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['fatores_ambientais']}}</p>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Diagnóstico Fisioterapêutico Primário:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['diagnostico_fisioterapeutico']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Atividades ou grupos operativos dos quais o usuário participa:</h6>
-                        <div>
-                            <p class="m-0">{{str_replace('_', ' ', $atendimento['atividades'])}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Atividades ou grupos operativos dos quais o usuário participou:</h6>
-                        <div>
-                            <p class="m-0">{{str_replace('_', ' ', $atendimento['atividades_passadas'])}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Sessão exclusiva para atenção secundária:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">Condição funcional atual do paciente: {{$atendimento['funcional_condicao']}}</p>
-                            <p class="m-0" style="max-width: 90%;">Tratamento ofertado: {{$atendimento['tratamento_ofertado']}}</p>
-                            <p class="m-0" style="max-width: 90%;">Evolução funcional do usuário desde o início: {{$atendimento['evolucao_funcional']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Número de sessões realizadas:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{str_replace('_', ' ', $atendimento['sessoes'])}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Assiduidade do paciente:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{str_replace('_', ' ', $atendimento['assiduidade'])}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Fatores ambientais e pessoais Secundários:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['ambientais_pessoais']}}</p>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Diagnóstico Fisioterapêutico Secundário:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['diagnostico_fisio']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Critérios para alta fisioterapêutica do setor secundário:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['criterios']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <h6>Justificativa para contrarreferência para a APS:</h6>
-                        <div>
-                            <p class="m-0" style="max-width: 90%;">{{$atendimento['justificativa']}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                --}}
 
                 <div class="row">
                     <div class="col-2"></div>
@@ -342,6 +151,25 @@
                                     <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65; white-space: nowrap;">Listar Fichas do Paciente</button>
                                 </a>
                             </div>
+                            <div class="col">
+                            <form action="{{ route('encaminhar') }}" method="post">
+                                @csrf
+                                <td class="col w-1/5 px-4 py-2 text-right align-middle">
+                                    <div class="flex justify-end items-center">
+                                        <input type="hidden" name="atendimento_id" value="{{ $atendimento['id'] }}">
+
+                                        <select name="encaminhamento" class=" icon cursor-pointer mr-2 border border-gray-300 bg-white text-#186f65 hover:text-green-800 font-bold py-2 px-5 rounded-lg shadow-lg" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-right: 10px;">
+                                            <option value="Primário" @if($atendimento['encaminhamento'] == 'Primário') selected @endif>Primário</option>
+                            <option value="Secundário" @if($atendimento['encaminhamento'] == 'Secundário') selected @endif>Secundário</option>
+                        </select>
+
+                                        <button type="submit" class=" icon bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-2 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">Encaminhar
+                                        </button>
+                                    </div>
+                                </td>
+                            </form>
+                        </div>
+
                         </div>
                     </div>
                 </div>
