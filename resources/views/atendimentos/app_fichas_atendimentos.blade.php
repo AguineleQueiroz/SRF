@@ -86,7 +86,7 @@
                                                     <p><strong>Condição Funcional:</strong> {{ $ficha->funcional_condicao ?? 'N/A' }}</p>
                                                     <p><strong>Tratamento Ofertado:</strong> {{ $ficha->tratamento_ofertado ?? 'N/A' }}</p>
                                                     <p><strong>Evolução Funcional:</strong> {{ $ficha->evolucao_funcional ?? 'N/A' }}</p>
-                                                    <p><strong>Sessões:</strong> {{ is_array($ficha->sessoes) ? implode(', ', $ficha->sessoes) : 'N/A' }}</p>
+                                                    <p><strong>Sessões:</strong> {{ $ficha->sessoes }}</p>
                                                     <p><strong>Assiduidade:</strong> {{ $ficha->assiduidade ?? 'N/A' }}</p>
                                                     <p><strong>Fatores Ambientais e Pessoais:</strong> {{ $ficha->ambientais_pessoais ?? 'N/A' }}</p>
                                                     <p><strong>Diagnóstico Fisioterapêutico:</strong> {{ $ficha->diagnostico_fisio ?? 'N/A' }}</p>

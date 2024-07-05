@@ -586,12 +586,32 @@ class AtendimentoController extends Controller
                                 ->map(function($ficha) {
                                     $ficha->atividades = $this->formatAtividades($ficha->atividades);
                                     $ficha->atividades_passadas = $this->formatAtividades($ficha->atividades_passadas);
+                                    if($ficha->tipo_ficha == 'Secundário') {
+                                        $ficha->sessoes = $this->formatSessoes($ficha->sessoes);
+                                        $ficha->assiduidade = $this->formatAssiduidade($ficha->assiduidade);
+                                    }
                                     return $ficha;
                                 });
 
     // Retorna a view com as fichas ordenadas
     return view('atendimentos.app_fichas_atendimentos', compact('fichas'));
 }
+
+private function formatSessoes($sessoes)
+{
+    if (!$sessoes || !is_array(json_decode($sessoes))) {
+        return 'N/A';
+    }
+    return implode(', ', array_map(function($sessao) {
+        return str_replace('_', ' ', $sessao);
+    }, json_decode($sessoes)));
+}
+
+private function formatAssiduidade($assiduidade)
+{
+    return str_replace('_', ' ', $assiduidade);
+}
+
 
 private function formatAtividades($atividadesJson)
 {

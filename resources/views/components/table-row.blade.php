@@ -73,7 +73,7 @@
                 <hr class="m-0 mb-2">
                 <div class="row">
                     <div class="col-2"></div>
-                    
+
                     <div class="col">
 
                         <div class="my-2 py-1"></div>
@@ -94,7 +94,7 @@
                             <div class="col-6 d-flex flex-column">
                                 <p class="m-0">Contato: {{$atendimento['contato']}}</p>
                                 <p class="m-0">Data de Cadastro: {{ date('d/m/Y', strtotime($atendimento['data_cadastro'])) }}</p>
-                                <p class="m-0">Responsável pelo cadastro: {{$atendimento['responsavel']}}</p>
+                                <p class="m-0">Responsável pelo cadastro: {{$atendimento['medico_responsavel']}}</p>
                             </div>
                         </div>
                     </div>
@@ -136,8 +136,8 @@
                             <div class="col-6 d-flex flex-column">
                                 <p class="m-0">Última internação: {{ date('d/m/Y', strtotime($atendimento['ultima_internacao'])) }}</p>
                             </div>
-                            
-                            <div class="col-6 d-flex flex-column">     
+
+                            <div class="col-6 d-flex flex-column">
                             <div class="my-1.5 py-0.5"></div>
                                 <p class="m-0">Médico responsável: {{$atendimento['medico_responsavel']}}</p>
                             </div>
@@ -154,7 +154,7 @@
                 <br><br>
 
 
-        
+
                 <div class="container">
                     <div class="row justify-content-center"></div>
                     <div class="col-12">

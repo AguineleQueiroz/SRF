@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                  
+
                 <div class="py-4 mb-6 border-2 border-gray-300 shadow-md mx-auto" style="background-color: #186f65; max-width: 670px; margin-top: 20px;">
                     <h1 class="text-2xl font-bold text-center text-white">Cadastro de Pacientes</h1>
                 </div>
@@ -19,11 +19,11 @@
                       <!-- ///////////////////////////////////////////////////////////////////////////////////-->
 
                       <!-- Dados Básicos-->
-                      
+
                       <!-- 1º tópico: Informações -->
                       <div class="border-b border-gray-300 mb-6">
                         <h2 class="text-lg font-bold mb-2">Informações</h2>
-                        
+
                         <div class="grid grid-cols-2 gap-4">
                           <div class="mb-4">
                             <label class="block text-sm font-bold" for="nome">Nome:</label>
@@ -66,12 +66,12 @@
                             <label class="block text-sm font-bold" for="data_cadastro">Data de Cadastro:</label>
                             <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="data_cadastro" id="data-cadastro" type="date" placeholder="DD/MM/AAAA" required>
                           </div>
-                        
-                        
+
+
                         </div>
-                        
+
                       </div>
-                      
+
                       <!-- 2º tópico: Unidade Básica de Saúde -->
                       <div class="border-b border-gray-300 mb-6">
                         <h2 class="text-lg font-bold mb-2">Unidade Básica de Saúde</h2>
@@ -86,7 +86,7 @@
                           </div>
                         </div>
                       </div>
-                      
+
                       <!-- 3º tópico: Condições de Saúde -->
                       <div class="border-b border-gray-300 mb-6">
                         <h2 class="text-lg font-bold mb-2">Condições de Saúde</h2>
@@ -109,7 +109,7 @@
                           </div>
                         </div>
                       </div>
-                      
+
                       <!-- 4º tópico: Nível de prioridade -->
                       <div class="mb-6 border-b border-gray-300">
                         <h2 class="text-lg font-bold mb-2">Nível de Prioridade</h2>
@@ -142,21 +142,21 @@
                               </label>
                               <label for="motivos-descricao" class="hidden"></label>
                                 <textarea name="motivos-descricao[]" id="dor" class="hidden shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-y" placeholder="Explique o motivo"></textarea>
-                              
+
                               <label for="motivos" class="flex items-center">
                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md " name="motivos[]" value="incapacidade" onchange="toggleField(this)" data-target="avds" onfocus="this.blur()">
                                 <span class="ml-2">Incapacidade de realizar AVDS</span>
                               </label>
                               <label for="motivos-descricao" class="hidden"></label>
                                 <textarea name="motivos-descricao[]" id="avds" class="hidden shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-y" placeholder="Explique o motivo"></textarea>
-                              
+
                               <label for="motivos" class="flex items-center">
                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="motivos[]" value="osteomusculares" onchange="toggleField(this)" data-target="osteomusculares" onfocus="this.blur()">
                                 <span class="ml-2">Condições osteomusculares</span>
                               </label>
                               <label for="motivos-descricao" class="hidden"></label>
                                 <textarea name="motivos-descricao[]" id="osteomusculares" class="hidden shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-y" placeholder="Explique o motivo"></textarea>
-                              
+
                               <label for="motivos" class="flex items-center">
                                 <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="motivos[]" value="neurologicas" onchange="toggleField(this)" data-target="neurologicas" onfocus="this.blur()">
                                 <span class="ml-2">Condições neurológicas</span>
@@ -247,22 +247,22 @@
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="Mova_se" onfocus="this.blur()">
                               <span class="ml-2">Grupo de caminhada MOVA-SE</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="Menos_dor_mais_saude" onfocus="this.blur()">
                               <span class="ml-2">Grupo de dor crônica Menos dor mais saúde</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="Peso_saudavel" onfocus="this.blur()">
                               <span class="ml-2">Grupo funcional peso saudável</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="Geracao_esporte" onfocus="this.blur()">
                               <span class="ml-2">Geração Esporte</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="NDA" onfocus="this.blur()">
                               <span class="ml-2">Não participa de nenhuma atividade ou grupo</span>
@@ -280,22 +280,22 @@
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="Mova_se_RA" onfocus="this.blur()">
                               <span class="ml-2">Grupo de caminhada MOVA-SE</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="Mais_saude_RA" onfocus="this.blur()">
                               <span class="ml-2">Grupo de dor crônica Menos dor mais saúde</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="Peso_saudavel_RA" onfocus="this.blur()">
                               <span class="ml-2">Grupo funcional peso saudável</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="Geracao_esporte_RA" onfocus="this.blur()">
                               <span class="ml-2">Geração Esporte</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="NDA_RA" onfocus="this.blur()">
                               <span class="ml-2">Nunca participou das atividades ou grupos acima</span>
@@ -332,17 +332,17 @@
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="sessoes" value="Menos_de_10" onfocus="this.blur()">
                               <span class="ml-2">Menos de 10</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="sessoes" value="10_à_20" onfocus="this.blur()">
                               <span class="ml-2">10-20</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="sessoes" value="20_à_30" onfocus="this.blur()">
                               <span class="ml-2">20-30</span>
                             </label>
-                            
+
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="sessoes" value="Mais_de_30" onfocus="this.blur()">
                               <span class="ml-2">Mais de 30</span>
@@ -434,7 +434,7 @@
         body.classList.remove('modal-open');
         body.removeChild(backdrop);
       }
-      
+
     });
 
     function toggleField(checkbox) {
