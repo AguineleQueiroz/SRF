@@ -155,17 +155,17 @@
 
 
         
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
+                <div class="container">
+                    <div class="row justify-content-center"></div>
+                    <div class="col-12">
                         <div class="row">
                             <div class="col">
-                                <a href="/editar_paciente/{{ $atendimento['id'] }}">
+                                <a href="/editar_paciente/{{ $atendimento['id'] }}" class="ml-5">
                                     <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65;">Editar</button>
                                 </a>
                             </div>
                             <div class="col">
-                                <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65; white-space: nowrap;" data-toggle="modal" data-target="#modalAddNovaFichaAtendimento" data-atendimento-id="{{ $atendimento['id'] }}">
+                                <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md ml-5" style="background-color: #186f65; white-space: nowrap;" data-toggle="modal" data-target="#modalAddNovaFichaAtendimento" data-atendimento-id="{{ $atendimento['id'] }}">
                                     + Adicionar Ficha
                                 </button>
                             </div>

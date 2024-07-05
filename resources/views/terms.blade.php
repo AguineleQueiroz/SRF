@@ -77,11 +77,11 @@
     <div class="flex justify-center">
       <form method="POST" action="{{route('terms.declineTerms')}}">
         @csrf
-        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg mr-4" style="background-color: #ef4444; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Cancelar</button>
+        <button type="submit" class="icon bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg mr-4" style="background-color: #ef4444; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Cancelar</button>
       </form>
       <form method="POST" action="{{route('terms.accept')}}">
         @csrf
-        <button type="submit" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Aceitar</button>
+        <button type="submit" class="icon bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Aceitar</button>
       </form>
     </div>
    
