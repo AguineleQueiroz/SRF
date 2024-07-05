@@ -39,7 +39,7 @@
                                 <label class="block text-sm font-bold" for="idade">Idade:</label>
                                 <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                        name="idade" id="idade" type="text" placeholder="Digite sua idade"
-                                       value="{{ $atendimentos[0]['idade'] ?? '' }}" readonly>
+                                       value="{{ $atendimentos[0]['idade'] ?? '' }}">
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-bold">Sexo:</label>
