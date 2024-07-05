@@ -47,9 +47,9 @@ class AtendimentoController extends Controller
 
             //3º tópico: Condições de Saúde
 
-            'diagnostico' => 'required|string',
+            'diagnostico' => 'required|string|max:2000',
 
-            'comorbidades' => 'nullable|string',
+            'comorbidades' => 'nullable|string|max:2000',
 
             'ultima_internacao' => 'nullable|date',
 

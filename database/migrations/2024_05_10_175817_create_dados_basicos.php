@@ -41,9 +41,9 @@ return new class extends Migration
 
             //3º tópico: Condições de Saúde
 
-            $table->text('diagnostico');
+            $table->text('diagnostico', 2000);
 
-            $table->string('comorbidades')->nullable();
+            $table->string('comorbidades', 2000)->nullable();
 
             $table->date('ultima_internacao')->nullable();
 

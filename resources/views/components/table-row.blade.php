@@ -73,7 +73,11 @@
                 <hr class="m-0 mb-2">
                 <div class="row">
                     <div class="col-2"></div>
+                    
                     <div class="col">
+
+                        <div class="my-2 py-1"></div>
+
                         <h6>Informações:</h6>
                         <div class="row">
                             <div class="col-6 d-flex flex-column">
@@ -96,6 +100,9 @@
                     </div>
                 </div>
 
+                <hr class="my-3 bg-lightgray" style="border-color: #E0E0E0;">
+
+
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col">
@@ -111,28 +118,43 @@
                     </div>
                 </div>
 
+                <hr class="my-3 bg-lightgray" style="border-color: #E0E0E0;">
+
+
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col">
                         <h6>Condições de Saúde:</h6>
                         <div class="row">
                             <div class="col-6">
-                                <p class="m-0" style="max-width: 90%;">Diagnóstico clínico: {{$atendimento['diagnostico']}}</p>
-                                <p class="m-0" style="max-width: 90%;">Comorbidades associadas: {{$atendimento['comorbidades']}}</p>
+                                <p class="m-0" style="max-width: 90%; text-align: justify;">Diagnóstico clínico: {{$atendimento['diagnostico']}}</p>
+
+                                <div class="my-1.5 py-0.5"></div>
+
+                                <p class="m-0" style="max-width: 90%; text-align: justify;">Comorbidades associadas: {{$atendimento['comorbidades']}}</p>
                             </div>
                             <div class="col-6 d-flex flex-column">
                                 <p class="m-0">Última internação: {{ date('d/m/Y', strtotime($atendimento['ultima_internacao'])) }}</p>
                             </div>
-                            <div class="col-6 d-flex flex-column">
+                            
+                            <div class="col-6 d-flex flex-column">     
+                            <div class="my-1.5 py-0.5"></div>
                                 <p class="m-0">Médico responsável: {{$atendimento['medico_responsavel']}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div style="padding-top: 20px;">
+                    <hr class="my-3 bg-lightgray" style="border-color: #E0E0E0;">
+                </div>
 
-                <br><br><br><br>
 
+
+                <br><br>
+
+
+        
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col">
@@ -170,12 +192,11 @@
                 </div>
 
 
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col">
-                        <hr class="m-12 mb-8">
-                    </div>
-                </div>
+
+
+                <div class="my-3 py-2"></div>
+
+
             </tbody>
         </table>
     </td>
