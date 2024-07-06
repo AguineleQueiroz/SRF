@@ -29,7 +29,7 @@
             </div>
             <div class="flex items-center justify-center w-48" style="width:40%;">
                 <!-- Adicionar imagem SVG aqui -->
-                <img src="{{asset('/img/login2.jpg')}}" alt="imagem login" class="ml-4">
+                <img src="{{asset('/img/imagem-login.svg')}}" alt="imagem login" class="ml-4">
             </div>
         </div>
     </body>
