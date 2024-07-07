@@ -7,7 +7,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            {{ __('Lista de Atendimentos') }}
+            {{ __('Editar Dados') }}
         </h2>
     </x-slot>
 

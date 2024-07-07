@@ -22,6 +22,59 @@
         .icon:hover {
             animation: jump 0.3s ease;
         }
+        /* Customização para navegadores baseados no WebKit */
+        ::-webkit-scrollbar {
+            width: 10px;  /* Largura do scrollbar vertical */
+            height: 10px; /* Altura do scrollbar horizontal */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;  /* Cor cinza clara para o thumb */
+            border-radius: 8px; /* Borda levemente arredondada */
+            border: 0px solid transparent; /* Espaço ao redor do thumb */
+            background-clip: content-box; /* Ajusta a cor do thumb para não sobrepor o espaço */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent; /* Torna o track invisível */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #aaa; /* Cor um pouco mais escura ao passar o mouse */
+        }
+
+        /* Customização para Firefox */
+        body {
+            scrollbar-width: thin; /* Define o scrollbar como fino */
+            scrollbar-color: #888 transparent; /* Cor do thumb e track */
+        }
+
+        /* Adicione margens ou padding no conteúdo para reduzir o tamanho visual */
+        .container {
+            padding: 10px; /* Ajuste conforme necessário */
+            margin: 10px;  /* Ajuste conforme necessário */
+        }
+
+        .icon:hover {
+        animation: jump 0.3s ease;
+        }
+
+        /* Adicione esta parte no seu arquivo CSS ou na seção de estilo do seu HTML */
+        .custom-select:hover {
+            background-color: #f0f0f0; /* Cor de fundo cinza sutil */
+        }
+
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
     </style>
 
 
