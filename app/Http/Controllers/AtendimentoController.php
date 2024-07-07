@@ -360,96 +360,100 @@ class AtendimentoController extends Controller
 
 
     public function salvarDados(Request $request)
-    {
-        try {
-            $checkbox = [
-                'dor',
-                'incapacidade',
-                'osteomusculares',
-                'neurologicas',
-                'uroginecologicas',
-                'cardiovasculares',
-                'respiratorias',
-                'oncologicas',
-                'pediatria',
-                'multiplas',
-                'mova_se',
-                'menos_dor_mais_saude',
-                'peso_saudavel',
-                'geracao_esporte',
-                'nda',
-                'mova_se_ra',
-                'mais_saude_ra',
-                'peso_saudavel_ra',
-                'geracao_esporte_ra',
-                'nda_ra'
-            ];
+{
+    try {
+        $checkbox = [
+            'dor',
+            'incapacidade',
+            'osteomusculares',
+            'neurologicas',
+            'uroginecologicas',
+            'cardiovasculares',
+            'respiratorias',
+            'oncologicas',
+            'pediatria',
+            'multiplas',
+            'mova_se',
+            'menos_dor_mais_saude',
+            'peso_saudavel',
+            'geracao_esporte',
+            'nda',
+            'mova_se_ra',
+            'mais_saude_ra',
+            'peso_saudavel_ra',
+            'geracao_esporte_ra',
+            'nda_ra'
+        ];
 
-            $text_areas = [
-                'dor_descricao',
-                'incapacidade_descricao',
-                'osteomusculares_descricao',
-                'neurologicas_descricao',
-                'uroginecologicas_descricao',
-                'cardiovasculares_descricao',
-                'respiratorias_descricao',
-                'oncologicas_descricao',
-                'pediatria_descricao',
-                'multiplas_descricao',
-            ];
+        $text_areas = [
+            'dor_descricao',
+            'incapacidade_descricao',
+            'osteomusculares_descricao',
+            'neurologicas_descricao',
+            'uroginecologicas_descricao',
+            'cardiovasculares_descricao',
+            'respiratorias_descricao',
+            'oncologicas_descricao',
+            'pediatria_descricao',
+            'multiplas_descricao',
+        ];
 
-            $request->validate($this->regras());
+        $request->validate($this->regras());
 
-            $atendimento = $request->all();
+        $atendimento = $request->all();
 
-            list($dados_basicos, $atendimento_primario, $atendimento) = $this->getDadosAtendimentos($atendimento);
+        list($dados_basicos, $atendimento_primario, $atendimento) = $this->getDadosAtendimentos($atendimento);
 
-            if (isset($atendimento_primario['motivos']) && isset($atendimento_primario['motivos-descricao'])) {
+        // Adicionar o nome do usuário logado ao dados_basicos
+        $dados_basicos['responsavel_cadastro'] = Auth::user()->name;
 
-                $motivos = $atendimento_primario['motivos'];
-                $motivosDescricao = $atendimento_primario['motivos-descricao'];
+        if (isset($atendimento_primario['motivos']) && isset($atendimento_primario['motivos-descricao'])) {
 
-                // Remover motivos e descrições com valor nulo
-                $filteredMotivos = [];
-                $filteredMotivosDescricao = [];
-                foreach ($motivos as $key => $motivo) {
-                    if (!empty($motivo) && isset($motivosDescricao[$key])) {
-                        $filteredMotivos[] = $motivo;
-                        $filteredMotivosDescricao[] = $motivosDescricao[$key];
-                    }
-                }
+            $motivos = $atendimento_primario['motivos'];
+            $motivosDescricao = $atendimento_primario['motivos-descricao'];
 
-                $atendimento_primario['motivos-descricao'] = $filteredMotivosDescricao;
-
-                $motivosedescricao = array_combine($filteredMotivos, $filteredMotivosDescricao);
-
-                unset($atendimento_primario['motivos-descricao']);
-                unset($atendimento_primario['motivos']);
-
-                foreach ($motivosedescricao as $motivo => $descricao) {
-                    $atendimento_primario[strtolower($motivo)] = 1;
-                    $atendimento_primario[strtolower($motivo) . '_descricao'] = $descricao;
+            // Remover motivos e descrições com valor nulo
+            $filteredMotivos = [];
+            $filteredMotivosDescricao = [];
+            foreach ($motivos as $key => $motivo) {
+                if (!empty($motivo) && isset($motivosDescricao[$key])) {
+                    $filteredMotivos[] = $motivo;
+                    $filteredMotivosDescricao[] = $motivosDescricao[$key];
                 }
             }
 
-            $primario = AtendimentoPrimario::create($atendimento_primario);
-            $secundario = AtendimentoSecundario::create($atendimento);
-            $dadosbasicos = DadosBasicos::create($dados_basicos);
+            $atendimento_primario['motivos-descricao'] = $filteredMotivosDescricao;
 
-            $arr = [
-                'user_id' => Auth::id(),
-                'tb_dados_basicos_id' => $dadosbasicos->id,
-                'tb_atendimento_primario_id' => $primario->id ?? $dados_basicos->id,
-                'tb_atendimento_secundario_id' => $secundario->id ?? $dados_basicos->id,
-            ];
+            $motivosedescricao = array_combine($filteredMotivos, $filteredMotivosDescricao);
 
-            Atendimento::create($arr);
+            unset($atendimento_primario['motivos-descricao']);
+            unset($atendimento_primario['motivos']);
 
-            return redirect()->route('dashboard')->with('success', 'Dados salvos com sucesso!');
-        } catch (\Exception $exception) {
-            dd($exception);
+            foreach ($motivosedescricao as $motivo => $descricao) {
+                $atendimento_primario[strtolower($motivo)] = 1;
+                $atendimento_primario[strtolower($motivo) . '_descricao'] = $descricao;
+            }
         }
+
+        $primario = AtendimentoPrimario::create($atendimento_primario);
+        $secundario = AtendimentoSecundario::create($atendimento);
+        $dadosbasicos = DadosBasicos::create($dados_basicos);
+
+        $arr = [
+            'user_id' => Auth::id(),
+            'tb_dados_basicos_id' => $dadosbasicos->id,
+            'tb_atendimento_primario_id' => $primario->id ?? $dados_basicos->id,
+            'tb_atendimento_secundario_id' => $secundario->id ?? $dados_basicos->id,
+        ];
+
+        Atendimento::create($arr);
+
+        return redirect()->route('dashboard')->with('success', 'Dados salvos com sucesso!');
+    } catch (\Exception $exception) {
+        dd($exception);
     }
+}
+
 
 
     public function renderizarView()
