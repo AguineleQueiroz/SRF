@@ -94,7 +94,7 @@
                             <div class="col-6 d-flex flex-column">
                                 <p class="m-0">Contato: {{$atendimento['contato']}}</p>
                                 <p class="m-0">Data de Cadastro: {{ date('d/m/Y', strtotime($atendimento['data_cadastro'])) }}</p>
-                                <p class="m-0">Responsável pelo cadastro: {{$atendimento['medico_responsavel']}}</p>
+                                <p class="m-0">Responsável pelo cadastro: {{$atendimento['responsavel_cadastro']}}</p>
                             </div>
                         </div>
                     </div>
