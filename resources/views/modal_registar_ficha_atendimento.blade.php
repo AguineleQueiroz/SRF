@@ -181,31 +181,33 @@
                             <textarea class="shadow appearance-none border rounded w-3/4 h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="evolucao_funcional" id="evolucao_funcional_sec" placeholder="Digite a evolução funcional do usuário" required>{{ old('evolucao_funcional') }}</textarea>
                         </div>
                     </div>
+<!-- 6º tópico: Sessões Realizadas -->
+<div class="border-b border-gray-300 mb-6">
+    <h2 class="block text-sm font-bold">Número de sessões realizadas:</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 gap-4">
+            <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_menos_de_10" name="sessoes[]" value="Menos_de_10" @if(is_array(old('sessoes')) && in_array('Menos_de_10', old('sessoes'))) checked @endif onclick="selectOnlyThis(this)">
+                <span class="ml-2">Menos de 10</span>
+            </label>
+            <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_10_20" name="sessoes[]" value="10_à_20" @if(is_array(old('sessoes')) && in_array('10_à_20', old('sessoes'))) checked @endif onclick="selectOnlyThis(this)">
+                <span class="ml-2">10-20</span>
+            </label>
+            <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_20_30" name="sessoes[]" value="20_à_30" @if(is_array(old('sessoes')) && in_array('20_à_30', old('sessoes'))) checked @endif onclick="selectOnlyThis(this)">
+                <span class="ml-2">20-30</span>
+            </label>
+            <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_mais_de_30" name="sessoes[]" value="Mais_de_30" @if(is_array(old('sessoes')) && in_array('Mais_de_30', old('sessoes'))) checked @endif onclick="selectOnlyThis(this)">
+                <span class="ml-2">Mais de 30</span>
+            </label>
+        </div>
+    </div>
+</div>
 
-                    <!-- 6º tópico: Sessões Realizadas -->
-                    <div class="border-b border-gray-300 mb-6">
-                        <h2 class="block text-sm font-bold">Número de sessões realizadas:</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="grid grid-cols-1 gap-4">
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_menos_de_10" name="sessoes[]" onfocus="this.blur()" value="Menos_de_10" @if(is_array(old('sessoes')) && in_array('Menos_de_10', old('sessoes'))) checked @endif>
-                                    <span class="ml-2">Menos de 10</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_10_20" name="sessoes[]" onfocus="this.blur()" value="10_à_20" @if(is_array(old('sessoes')) && in_array('10_à_20', old('sessoes'))) checked @endif>
-                                    <span class="ml-2">10-20</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_20_30" name="sessoes[]" onfocus="this.blur()" value="20_à_30" @if(is_array(old('sessoes')) && in_array('20_à_30', old('sessoes'))) checked @endif>
-                                    <span class="ml-2">20-30</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="sessoes_mais_de_30" name="sessoes[]" onfocus="this.blur()" value="Mais_de_30" @if(is_array(old('sessoes')) && in_array('Mais_de_30', old('sessoes'))) checked @endif>
-                                    <span class="ml-2">Mais de 30</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+
+
 
                     <!-- 7º tópico: Assiduidade do paciente -->
                     <div class="mb-4">
@@ -287,3 +289,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function selectOnlyThis(checkbox) {
+        var checkboxes = document.getElementsByName('sessoes[]');
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false;
+        });
+    }
+</script>
