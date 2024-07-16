@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tb_atendimento_secundario_id');
 
             $table->string('encaminhamento')->nullable();
+            $table->string('tipo_cidade')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
 

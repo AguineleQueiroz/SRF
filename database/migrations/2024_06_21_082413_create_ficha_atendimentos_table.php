@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ficha_atendimentos', function (Blueprint $table) {
             $table->id();
             $table->string('tipo_ficha');
+            $table->string('tipo_cidade');
             $table->json('motivos')->nullable();
             $table->text('queixa')->nullable();
             $table->text('achados_exame_fisico')->nullable();
