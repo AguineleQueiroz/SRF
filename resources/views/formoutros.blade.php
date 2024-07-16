@@ -82,7 +82,7 @@
     </div>
     <div class="mb-4">
     <label class="block text-sm font-bold" for="ultima_internacao">Última internação:</label>
-    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="ultima_internacao" id="ultima-internacao" type="date" placeholder="DD/MM/AAAA" required>
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="ultima_internacao" id="ultima-internacao" type="date" placeholder="DD/MM/AAAA">
     </div>
     <div class="mb-4">
     <label class="block text-sm font-bold" for="medico_responsavel">Médico responsável:</label>

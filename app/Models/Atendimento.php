@@ -12,11 +12,21 @@ class Atendimento extends Model
     protected $table='atendimentos';
 
     protected $fillable = [
-    
+
         'user_id',
         'tb_dados_basicos_id',
         'tb_atendimento_primario_id',
         'tb_atendimento_secundario_id',
-        
+
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function encaminhamentoHistoricos()
+    {
+        return $this->hasMany(EncaminhamentoHistorico::class);
+    }
 }

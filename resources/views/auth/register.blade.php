@@ -48,7 +48,8 @@
         <div class="mt-4">
             <x-input-label for="city" :value="__('Cidade')" />
             <select id="city" name="city" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                <option value="Datas">Datas</option>
+                <option value="Datas" selected>Datas</option>
+                <option value="Presidente Kubitschek">Presidente Kubitschek</option>
                 <!-- Adicione mais opções de cidades aqui -->
             </select>
             <x-input-error :messages="$errors->get('city')" class="mt-2" />

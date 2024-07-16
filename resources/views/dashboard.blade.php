@@ -33,7 +33,7 @@
                         <input type="text" id="searchInput3" name="search"
                         class="border-gray-300 rounded-md px-4 py-2 w-full bg-white border shadow-sm border-slate-300
                         placeholder-slate-400 focus:outline-none focus:border-green-800 focus:ring-green-800 block
-                        w-full rounded-md sm:text-sm focus:ring-1 focus:ring-opacity-50" placeholder="Nome ou Cartão SUS...">
+                        w-full rounded-md sm:text-sm focus:ring-1 focus:ring-opacity-50" placeholder="Nome, CPF ou Cartão SUS...">
 
                         <button class="d-none" type="submit">Search</button>
                     </form>

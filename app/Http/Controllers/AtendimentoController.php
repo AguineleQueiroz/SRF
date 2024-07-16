@@ -461,6 +461,7 @@ class AtendimentoController extends Controller
         return view('formprimario');
     }
 
+
     public function listarAtendimentos(Request $request)
 {
     $user = Auth::user(); // Obtém o usuário autenticado
@@ -469,17 +470,27 @@ class AtendimentoController extends Controller
     $atendimentos = [];
 
     if ($filtrarAtendimentos) {
-        $atendimentos = Atendimento::where('encaminhamento', $user->attention_type)->get();
+        $atendimentos = Atendimento::where('encaminhamento', $user->attention_type)
+                                   ->whereHas('user', function($query) use ($user) {
+                                       $query->where('city', $user->city);
+                                   })
+                                   ->get();
     } else {
-        $atendimentos = Atendimento::all();
+        $atendimentos = Atendimento::whereHas('user', function($query) use ($user) {
+                                  $query->where('city', $user->city);
+                              })
+                              ->get();
     }
 
     // Obter a data de hoje
     $today = Carbon::today();
 
-    // Filtrar os históricos para pegar apenas aqueles da data de hoje
+    // Filtrar os históricos para pegar apenas aqueles da data de hoje e pela cidade do usuário logado
     $historicos_encaminhamentos = EncaminhamentoHistorico::where('encaminhamento', $user->attention_type)
         ->whereDate('created_at', $today)
+        ->whereHas('atendimento.user', function($query) use ($user) {
+            $query->where('city', $user->city);
+        })
         ->get();
 
     $message = '';
@@ -520,7 +531,8 @@ class AtendimentoController extends Controller
         $atendimentosFiltrados[] = array_merge($dados_basicos, $dados_primario, $dados_secundario, [
             'responsavel' => $responsavel,
             'atendimento_id' => $atendimentoArray['id'],
-            'encaminhamento' => $atendimentoArray['encaminhamento']
+            'encaminhamento' => $atendimentoArray['encaminhamento'],
+            'cpf' => $atendimento->user->cpf, // Inclua o CPF do usuário no array
         ]);
     }
 
@@ -531,7 +543,8 @@ class AtendimentoController extends Controller
         foreach ($atendimentosFiltrados as $atendimento) {
             if (
                 str_contains(strtolower($atendimento['nome']), $search) ||
-                str_contains(strtolower($atendimento['cartao_sus']), $search)
+                str_contains(strtolower($atendimento['cartao_sus']), $search) ||
+                str_contains(strtolower($atendimento['cpf']), $search) // Verifique o CPF no filtro
             ) {
                 $atendimentos_filtrados[] = $atendimento;
             }
@@ -545,7 +558,6 @@ class AtendimentoController extends Controller
         'alertType' => $alertType
     ], compact('historicos_encaminhamentos'));
 }
-
 
     public function encaminhar(Request $request)
     {
@@ -582,8 +594,13 @@ class AtendimentoController extends Controller
 
     public function listar_fichas_paciente($id)
 {
-    // Ordena as fichas pela coluna 'created_at' em ordem decrescente, filtrando pelo 'atendimento_id'
+    $user = Auth::user(); // Obtém o usuário autenticado
+
+    // Ordena as fichas pela coluna 'created_at' em ordem decrescente, filtrando pelo 'atendimento_id' e 'city' do usuário logado
     $fichas = FichaAtendimento::where('atendimento_id', $id)
+                                ->whereHas('atendimento.user', function($query) use ($user) {
+                                    $query->where('city', $user->city);
+                                })
                                 ->with('motivoDescricoes')
                                 ->orderBy('created_at', 'desc')
                                 ->get()
@@ -600,6 +617,7 @@ class AtendimentoController extends Controller
     // Retorna a view com as fichas ordenadas
     return view('atendimentos.app_fichas_atendimentos', compact('fichas'));
 }
+
 
 private function formatSessoes($sessoes)
 {

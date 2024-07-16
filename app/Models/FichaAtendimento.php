@@ -48,4 +48,9 @@ class FichaAtendimento extends Model
     {
         return $this->hasMany(MotivoDescricao::class);
     }
+
+    public function atendimento()
+    {
+        return $this->belongsTo(Atendimento::class);
+    }
 }

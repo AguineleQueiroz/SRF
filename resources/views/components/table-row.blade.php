@@ -134,7 +134,7 @@
                                 <p class="m-0" style="max-width: 90%; text-align: justify;">Comorbidades associadas: {{$atendimento['comorbidades']}}</p>
                             </div>
                             <div class="col-6 d-flex flex-column">
-                                <p class="m-0">Última internação: {{ date('d/m/Y', strtotime($atendimento['ultima_internacao'])) }}</p>
+                                <p class="m-0">Última internação: {{ $atendimento['ultima_internacao'] ?? 'Nenhuma internação recente' }}</p>
                             </div>
 
                             <div class="col-6 d-flex flex-column">
