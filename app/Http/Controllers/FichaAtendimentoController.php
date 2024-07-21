@@ -29,21 +29,23 @@ class FichaAtendimentoController extends Controller
 {
     // Validação básica
     $request->validate([
-        'tipo_ficha' => 'required|in:Primário,Secundário',
-        'funcional_condicao' => 'string',
+        'tipo_ficha' => 'required|in:Primário,Secundário,Básica',
+        'funcional_condicao' => 'nullable|string',
         'atendimento_id' => 'required',
         'user_id' => 'required',
-        'tratamento_ofertado' => 'string',
-        'evolucao_funcional' => 'string',
-        'sessoes' => 'array|min:1',
-        'assiduidade' => 'in:assiduo,nao_assiduo',
-        'ambientais_pessoais' => 'string',
-        'diagnostico_fisio' => 'string',
-        'criterios' => 'string',
-        'justificativa' => 'string',
+        'tratamento_ofertado' => 'nullable|string',
+        'evolucao_funcional' => 'nullable|string',
+        'sessoes' => 'nullable|array|min:1',
+        'assiduidade' => 'nullable|in:assiduo,nao_assiduo',
+        'ambientais_pessoais' => 'nullable|string',
+        'diagnostico_fisio' => 'nullable|string',
+        'criterios' => 'nullable|string',
+        'justificativa' => 'nullable|string',
+        'tipo_especializacao' => 'nullable|string|max:2000',
+        'descricao_especialidade' => 'nullable|string|max:2000',
     ], [
         'tipo_ficha.required' => 'O campo tipo de ficha é obrigatório.',
-        'tipo_ficha.in' => 'O tipo de ficha deve ser Primário ou Secundário.',
+        'tipo_ficha.in' => 'O tipo de ficha deve ser Primário, Secundário ou Básica.',
         'funcional_condicao.required' => 'O campo condição funcional é obrigatório.',
         'tratamento_ofertado.required' => 'O campo tratamento ofertado é obrigatório.',
         'evolucao_funcional.required' => 'O campo evolução funcional é obrigatório.',
@@ -64,6 +66,8 @@ class FichaAtendimentoController extends Controller
         $data = $this->handlePrimarioFields($request);
     } elseif ($request->input('tipo_ficha') === 'Secundário') {
         $data = $this->handleSecundarioFields($request);
+    } elseif ($request->input('tipo_ficha') === 'Básica') {
+        $data = $this->handleBasicaFields($request);
     }
 
     // Criação do registro com os campos tratados
@@ -84,6 +88,7 @@ class FichaAtendimentoController extends Controller
 
     return back()->with('success', 'Ficha de Atendimento criada com sucesso.');
 }
+
 
 private function handlePrimarioFields(Request $request)
 {
@@ -118,6 +123,17 @@ private function handleSecundarioFields(Request $request)
         'diagnostico_fisio' => $request->input('diagnostico_fisio', null),
         'criterios' => $request->input('criterios', null),
         'justificativa' => $request->input('justificativa', null),
+    ];
+}
+
+private function handleBasicaFields(Request $request)
+{
+    return [
+        'tipo_ficha' => $request->tipo_ficha,
+        'atendimento_id' => $request->atendimento_id,
+        'user_id' => $request->user_id,
+        'tipo_especializacao' => $request->input('tipo_especializacao', null),
+        'descricao_especialidade' => $request->input('descricao_especialidade', null),
     ];
 }
 

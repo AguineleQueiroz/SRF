@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DadosBasicos extends Model
-{   
+{
     use HasFactory;
 
     protected $table='dados_basicos';
@@ -25,7 +25,10 @@ class DadosBasicos extends Model
 
         'data_nascimento',
 
+        'cpf',
         'cartao_sus',
+
+
 
         'endereco',
 

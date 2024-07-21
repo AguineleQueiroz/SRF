@@ -33,6 +33,8 @@ return new class extends Migration
             $table->text('diagnostico_fisio')->nullable();
             $table->text('criterios')->nullable();
             $table->text('justificativa')->nullable();
+            $table->text('tipo_especializacao')->nullable();
+            $table->text('descricao_especialidade')->nullable();
             $table->unsignedBigInteger('atendimento_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

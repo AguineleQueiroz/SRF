@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Atendimento;
+use App\Models\AtendimentoBasico;
 use App\Models\AtendimentoPrimario; // Importe o modelo Atendimentos aqui
 use App\Models\AtendimentoSecundario;
 use App\Models\DadosBasicos;
@@ -18,165 +19,94 @@ class AtendimentoController extends Controller
 {
     public function regras(){
         return [
-
             //Dados Básicos
-
-            //1º tópico: Informações
-
             'nome' => 'required|string|max:255',
-
             'idade' => 'required|integer',
-
             'sexo' => 'required|in:masculino,feminino',
-
             'contato' => 'required|string|max:20',
-
             'data_nascimento' => 'required|date',
-
+            'cpf' => 'required|string|max:20',
             'cartao_sus' => 'required|string|max:20',
-
             'endereco' => 'required|string|max:255',
-
             'data_cadastro' => 'required|date',
-
             //2º tópico: Unidade Básica de Saúde
-
             'ubs' => 'required|string|max:255',
-
             'acs' => 'required|string|max:255',
-
             //3º tópico: Condições de Saúde
-
             'diagnostico' => 'required|string|max:2000',
-
             'comorbidades' => 'nullable|string|max:2000',
-
             'ultima_internacao' => 'nullable|date',
-
             'responsavel_cadastro' => 'nullable|string|max:255',
-
             'medico_responsavel' => 'nullable|string|max:255',
-
             //4º tópico: Nível de prioridade
-
             'prioridade' => 'required|in:alta,media,baixa',
-
+            //Adicione aqui
+            'tipo_ficha' => 'required',
             //Primária
             //5º tópico: Atenção Primária
-
             'dor' => 'nullable',
-
             'dor_descricao' => 'nullable|string|max:2000',
-
             'incapacidade' => 'nullable',
-
             'incapacidade_descricao' => 'nullable|string|max:2000',
-
             'osteomusculares' => 'nullable',
-
             'osteomusculares_descricao' => 'nullable|string|max:2000',
-
             'neurologicas' => 'nullable',
-
             'neurologicas_descricao' => 'nullable|string|max:2000',
-
             'uroginecologicas' => 'nullable',
-
             'uroginecologicas_descricao' => 'nullable|string|max:2000',
-
             'cardiovasculares' => 'nullable',
-
             'cardiovasculares_descricao' => 'nullable|string|max:2000',
-
             'respiratorias' => 'nullable',
-
             'respiratorias_descricao' => 'nullable|string|max:2000',
-
             'oncologicas' => 'nullable',
-
             'oncologicas_descricao' => 'nullable|string|max:2000',
-
             'pediatria' => 'nullable',
-
             'pediatria_descricao' => 'nullable|string|max:2000',
-
             'multiplas' => 'nullable',
-
             'multiplas_descricao' => 'nullable|string|max:2000',
-
             //6º tópico: Avaliação Fisioterapêutica
-
             'queixa' => 'nullable|string|max:2000',
-
             'achados_exame_fisico' => 'nullable|string|max:2000',
-
             'testes_padronizados' => 'nullable|string|max:2000',
-
             'condicao_funcional' => 'nullable|string|max:2000',
-
             'fatores_ambientais' => 'nullable|string|max:2000',
-
+            'tipo_especializacao' => 'nullable|string|max:2000',
+            'descricao_especialidade' => 'nullable|string|max:2000',
             'diagnostico_fisioterapeutico' => 'nullable|string|max:2000',
-
             //7º tópico: Atividades ou grupos operativos
-
             'mova_se' => 'nullable',
-
             'menos_dor_mais_saude' => 'nullable',
-
             'peso_saudavel' => 'nullable',
-
             'geracao_esporte' => 'nullable',
-
             'nda' => 'nullable',
-
             //8º tópico: Atividades ou grupos operativos dos quais o usuário já participou
-
             'mova_se_participou' => 'nullable',
-
             'mais_saude_participou' => 'nullable',
-
             'peso_saudavel_participou' => 'nullable',
-
             'geracao_esporte_participou' => 'nullable',
-
             'nda_participou' => 'nullable',
-
             //Secundario
             //5º tópico: Atenção Secundária
-
             'funcional_condicao' => 'nullable|string|max:2000',
-
             'tratamento_ofertado' => 'nullable|string|max:2000',
-
             'evolucao_funcional' => 'nullable|string|max:2000',
-
             //6º tópico: Sessões Realizadas
-
             'Menos_de_10' => 'nullable',
-
             '10_20' => 'nullable',
-
             '20_30' => 'nullable',
-
             'Mais_de_30' => 'nullable',
-
             //7º tópico: Assiduidade do paciente
-
             'assiduidade' => 'nullable|in:assiduo,nao_assiduo',
-
             //8º tópico: Fatores Ambientais e Pessoais
-
             'ambientais_pessoais' => 'nullable|string|max:2000',
-
             'diagnostico_fisio' => 'nullable|string|max:2000',
-
             'criterios' => 'nullable|string|max:2000',
-
             'justificativa' => 'nullable|string|max:2000',
-
+            'justificativas.geracao_esporte' => 'nullable|string|max:2000',
+            'justificativas.geracao_esporte_RA' => 'nullable|string|max:2000',
         ];
     }
+
 
     public function getDadosAtendimentos($atendimento){
 
@@ -186,6 +116,7 @@ class AtendimentoController extends Controller
             'sexo',
             'contato',
             'data_nascimento',
+            'cpf',
             'cartao_sus',
             'endereco',
             'data_cadastro',
@@ -263,104 +194,115 @@ class AtendimentoController extends Controller
     }
 
 
+
     public function update(Request $request, $id)
-    {
-        try {
-            // Validação dos dados de entrada
-            $request->validate($this->regras());
-
-            // Recupera o atendimento pelo ID
-            $atendimento = Atendimento::findOrFail($id);
-
-            // Atualiza os dados básicos do atendimento
-            $dados_basicos = $request->only([
-                'nome',
-                'idade',
-                'sexo',
-                'contato',
-                'data_nascimento',
-                'cartao_sus',
-                'endereco',
-                'data_cadastro',
-                'ubs',
-                'acs',
-                'diagnostico',
-                'comorbidades',
-                'ultima_internacao',
-                'responsavel_cadastro',
-                'medico_responsavel',
-                'prioridade'
-            ]);
-            $atendimento->dados_basicos()->update($dados_basicos);
-
-            // Atualiza os dados do atendimento primário
-            $atendimento_primario = $request->only([
-                'dor',
-                'dor_descricao',
-                'incapacidade',
-                'incapacidade_descricao',
-                'osteomusculares',
-                'osteomusculares_descricao',
-                'neurologicas',
-                'neurologicas_descricao',
-                'uroginecologicas',
-                'uroginecologicas_descricao',
-                'cardiovasculares',
-                'cardiovasculares_descricao',
-                'respiratorias',
-                'respiratorias_descricao',
-                'oncologicas',
-                'oncologicas_descricao',
-                'pediatria',
-                'pediatria_descricao',
-                'multiplas',
-                'multiplas_descricao',
-                'queixa',
-                'achados_exame_fisico',
-                'testes_padronizados',
-                'condicao_funcional',
-                'fatores_ambientais',
-                'diagnostico_fisioterapeutico',
-                'mova_se',
-                'menos_dor_mais_saude',
-                'peso_saudavel',
-                'geracao_esporte',
-                'nda',
-                'mova_se_participou',
-                'mais_saude_participou',
-                'peso_saudavel_participou',
-                'geracao_esporte_participou',
-                'nda_participou',
-
-            ]);
-            $atendimento->atendimento_primario()->update($atendimento_primario);
-
-            // Atualiza os dados do atendimento secundário
-            $atendimento_secundario = $request->only([
-                'funcional_condicao',
-                'tratamento_ofertado',
-                'evolucao_funcional',
-                'sessoes',
-                'assiduidade',
-                'ambientais_pessoais',
-                'diagnostico_fisio',
-                'criterios',
-                'justificativa',
-                'atividades',
-                'atividades_passadas'
-            ]);
-            $atendimento->atendimento_secundario()->update($atendimento_secundario);
-
-            return redirect()->route('dashboard')->with('success', 'Atendimento atualizado com sucesso!');
-        } catch (\Exception $exception) {
-            dd($exception); // Tratar o erro conforme necessário
-        }
-    }
-
-
-
-    public function salvarDados(Request $request)
 {
+    try {
+        // Validação dos dados de entrada
+        $request->validate($this->regras());
+
+        // Recupera o atendimento pelo ID
+        $atendimento = Atendimento::findOrFail($id);
+
+        // Atualiza os dados básicos do atendimento
+        $dados_basicos = $request->only([
+            'nome',
+            'idade',
+            'sexo',
+            'contato',
+            'data_nascimento',
+            'cpf',
+            'cartao_sus',
+            'endereco',
+            'data_cadastro',
+            'ubs',
+            'acs',
+            'diagnostico',
+            'comorbidades',
+            'ultima_internacao',
+            'responsavel_cadastro',
+            'medico_responsavel',
+            'prioridade'
+        ]);
+        $atendimento->dados_basicos()->update($dados_basicos);
+
+        // Atualiza os dados do atendimento primário
+        $atendimento_primario = $request->only([
+            'dor',
+            'dor_descricao',
+            'incapacidade',
+            'incapacidade_descricao',
+            'osteomusculares',
+            'osteomusculares_descricao',
+            'neurologicas',
+            'neurologicas_descricao',
+            'uroginecologicas',
+            'uroginecologicas_descricao',
+            'cardiovasculares',
+            'cardiovasculares_descricao',
+            'respiratorias',
+            'respiratorias_descricao',
+            'oncologicas',
+            'oncologicas_descricao',
+            'pediatria',
+            'pediatria_descricao',
+            'multiplas',
+            'multiplas_descricao',
+            'queixa',
+            'achados_exame_fisico',
+            'testes_padronizados',
+            'condicao_funcional',
+            'fatores_ambientais',
+            'diagnostico_fisioterapeutico',
+            'mova_se',
+            'menos_dor_mais_saude',
+            'peso_saudavel',
+            'geracao_esporte',
+            'nda',
+            'mova_se_participou',
+            'mais_saude_participou',
+            'peso_saudavel_participou',
+            'geracao_esporte_participou',
+            'nda_participou'
+        ]);
+
+        // Processar justificativas
+        if (isset($request->justificativas)) {
+            foreach ($request->justificativas as $key => $value) {
+                $atendimento_primario[$key . '_descricao'] = $value;
+            }
+        }
+
+        $atendimento->atendimento_primario()->update($atendimento_primario);
+
+        // Atualiza os dados do atendimento secundário
+        $atendimento_secundario = $request->only([
+            'funcional_condicao',
+            'tratamento_ofertado',
+            'evolucao_funcional',
+            'sessoes',
+            'assiduidade',
+            'ambientais_pessoais',
+            'diagnostico_fisio',
+            'criterios',
+            'justificativa',
+            'atividades',
+            'atividades_passadas'
+        ]);
+        $atendimento->atendimento_secundario()->update($atendimento_secundario);
+
+        return redirect()->route('dashboard')->with('success', 'Atendimento atualizado com sucesso!');
+    } catch (\Exception $exception) {
+        dd($exception); // Tratar o erro conforme necessário
+    }
+}
+
+
+
+
+public function salvarDados(Request $request)
+{
+
     try {
         $checkbox = [
             'dor',
@@ -385,30 +327,24 @@ class AtendimentoController extends Controller
             'nda_ra'
         ];
 
-        $text_areas = [
-            'dor_descricao',
-            'incapacidade_descricao',
-            'osteomusculares_descricao',
-            'neurologicas_descricao',
-            'uroginecologicas_descricao',
-            'cardiovasculares_descricao',
-            'respiratorias_descricao',
-            'oncologicas_descricao',
-            'pediatria_descricao',
-            'multiplas_descricao',
-        ];
-
         $request->validate($this->regras());
 
         $atendimento = $request->all();
 
-        list($dados_basicos, $atendimento_primario, $atendimento) = $this->getDadosAtendimentos($atendimento);
+        list($dados_basicos, $atendimento_primario, $atendimento_secundario) = $this->getDadosAtendimentos($atendimento);
 
-        // Adicionar o nome do usuário logado ao dados_basicos
+        return 1;
+        // Adicionar o nome do usuário logado aos dados básicos
         $dados_basicos['responsavel_cadastro'] = Auth::user()->name;
 
-        if (isset($atendimento_primario['motivos']) && isset($atendimento_primario['motivos-descricao'])) {
+        // Processar justificativas
+        if (isset($request->justificativas)) {
+            foreach ($request->justificativas as $key => $value) {
+                $atendimento_primario[$key . '_descricao'] = $value;
+            }
+        }
 
+        if (isset($atendimento_primario['motivos']) && isset($atendimento_primario['motivos-descricao'])) {
             $motivos = $atendimento_primario['motivos'];
             $motivosDescricao = $atendimento_primario['motivos-descricao'];
 
@@ -435,16 +371,24 @@ class AtendimentoController extends Controller
             }
         }
 
-        $primario = AtendimentoPrimario::create($atendimento_primario);
-        $secundario = AtendimentoSecundario::create($atendimento);
-        $dadosbasicos = DadosBasicos::create($dados_basicos);
+        // Verifique o tipo de ficha e salve os dados de acordo
+        if ($atendimento['tipo_ficha'] === 'Básica') {
+            $dadosbasicos = AtendimentoBasico::create($dados_basicos);
 
-        $arr = [
-            'user_id' => Auth::id(),
-            'tb_dados_basicos_id' => $dadosbasicos->id,
-            'tb_atendimento_primario_id' => $primario->id ?? $dados_basicos->id,
-            'tb_atendimento_secundario_id' => $secundario->id ?? $dados_basicos->id,
-        ];
+            $arr = [
+                'user_id' => Auth::id(),
+                'tb_dados_basicos_id' => $dadosbasicos->id,
+            ];
+        } else {
+            $primario = AtendimentoPrimario::create($atendimento_primario);
+            $secundario = AtendimentoSecundario::create($atendimento_secundario);
+
+            $arr = [
+                'user_id' => Auth::id(),
+                'tb_atendimento_primario_id' => $primario->id ?? $dados_basicos->id,
+                'tb_atendimento_secundario_id' => $secundario->id ?? $dados_basicos->id,
+            ];
+        }
 
         Atendimento::create($arr);
 
@@ -453,6 +397,7 @@ class AtendimentoController extends Controller
         dd($exception);
     }
 }
+
 
 
 
@@ -532,7 +477,6 @@ class AtendimentoController extends Controller
             'responsavel' => $responsavel,
             'atendimento_id' => $atendimentoArray['id'],
             'encaminhamento' => $atendimentoArray['encaminhamento'],
-            'cpf' => $atendimento->user->cpf, // Inclua o CPF do usuário no array
         ]);
     }
 
@@ -551,6 +495,7 @@ class AtendimentoController extends Controller
         }
         $atendimentosFiltrados = $atendimentos_filtrados;
     }
+
 
     return view('dashboard', [
         'atendimentos' => $atendimentosFiltrados,
@@ -614,10 +559,10 @@ class AtendimentoController extends Controller
                                     return $ficha;
                                 });
 
+
     // Retorna a view com as fichas ordenadas
     return view('atendimentos.app_fichas_atendimentos', compact('fichas'));
 }
-
 
 private function formatSessoes($sessoes)
 {
@@ -634,7 +579,6 @@ private function formatAssiduidade($assiduidade)
     return str_replace('_', ' ', $assiduidade);
 }
 
-
 private function formatAtividades($atividadesJson)
 {
     $atividades = json_decode($atividadesJson, true);
@@ -645,8 +589,6 @@ private function formatAtividades($atividadesJson)
     }
     return 'N/A';
 }
-
-
 
 
 }

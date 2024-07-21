@@ -99,8 +99,10 @@ function allowOnlyNumbers(inputElement) {
     const contatoInput = document.getElementById('contato');
     allowOnlyNumbers(contatoInput);
 
+    const cpfInput = document.getElementById('cpf');
+    allowOnlyNumbers(cpfInput);
+
     const cartaoSusInput = document.getElementById('cartao_sus');
     allowOnlyNumbers(cartaoSusInput);
-
   </script>
 

@@ -11,7 +11,6 @@
         </h2>
     </x-slot>
 
-
     <style>
         @keyframes jump {
             0% { transform: translateY(0); }
@@ -77,7 +76,6 @@
         }
     </style>
 
-
     <div class="container mx-auto px-4">
         <h1 class="text-2xl font-bold mb-4"></h1>
 
@@ -112,6 +110,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body text-start">
+                                                {{$ficha->id}}
                                                 @if($ficha->tipo_ficha == 'Primário')
                                                     <!-- Campos para atenção primária -->
                                                     <p><strong>Tipo de Ficha:</strong> Primário</p>
@@ -145,6 +144,11 @@
                                                     <p><strong>Diagnóstico Fisioterapêutico:</strong> {{ $ficha->diagnostico_fisio ?? 'N/A' }}</p>
                                                     <p><strong>Critérios:</strong> {{ $ficha->criterios ?? 'N/A' }}</p>
                                                     <p><strong>Justificativa:</strong> {{ $ficha->justificativa ?? 'N/A' }}</p>
+                                                @elseif($ficha->tipo_ficha == 'Básica')
+                                                    <!-- Campos para atenção básica -->
+                                                    <p><strong>Tipo de Ficha:</strong> Básica</p>
+                                                    <p><strong>Tipo de Especialização:</strong> {{ $ficha->tipo_especializacao ?? 'N/A' }}</p>
+                                                    <p><strong>Descrição da Especialização:</strong> {{ $ficha->descricao_especialidade ?? 'N/A' }}</p>
                                                 @endif
                                                 <p><strong>Criado em:</strong> {{ $ficha->created_at }}</p>
                                                 <p><strong>Atualizado em:</strong> {{ $ficha->updated_at }}</p>

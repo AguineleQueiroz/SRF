@@ -55,6 +55,10 @@
                             <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="data_nascimento" id="data-nascimento" type="date" placeholder="DD/MM/AAAA" required>
                           </div>
                           <div class="mb-4">
+                            <label class="block text-sm font-bold" for="cpf">CPF:</label>
+                            <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"  name="cpf" id="cpf" type="number" placeholder="Digite o número do CPF" required>
+                          </div>
+                          <div class="mb-4">
                             <label class="block text-sm font-bold" for="cartao_sus">Número de Cartão SUS:</label>
                             <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"  name="cartao_sus" id="cartao-sus" type="number" placeholder="Digite o número do cartão SUS" required>
                           </div>
@@ -245,28 +249,30 @@
                           <div class="grid grid-cols-1 gap-4">
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="Mova_se" onfocus="this.blur()">
-                              <span class="ml-2">Grupo de caminhada MOVA-SE</span>
+                              <span class="ml-2">CAMINHADA</span>
                             </label>
 
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="Menos_dor_mais_saude" onfocus="this.blur()">
-                              <span class="ml-2">Grupo de dor crônica Menos dor mais saúde</span>
+                              <span class="ml-2"> PILATES, MUSCULAÇÃO , FUNCIONAL</span>
                             </label>
 
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="Peso_saudavel" onfocus="this.blur()">
-                              <span class="ml-2">Grupo funcional peso saudável</span>
+                              <span class="ml-2">Modalidade esportiva</span>
                             </label>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="NDA" onfocus="this.blur()">
+                                <span class="ml-2">Não participa de nenhuma atividade ou grupo</span>
+                              </label>
 
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="Geracao_esporte" onfocus="this.blur()">
-                              <span class="ml-2">Geração Esporte</span>
+                              <span class="ml-2">Outras</span>
                             </label>
 
-                            <label class="flex items-center">
-                              <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades" value="NDA" onfocus="this.blur()">
-                              <span class="ml-2">Não participa de nenhuma atividade ou grupo</span>
-                            </label>
+
                           </div>
                         </div>
                       </div>
@@ -278,28 +284,30 @@
                           <div class="grid grid-cols-1 gap-4">
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="Mova_se_RA" onfocus="this.blur()">
-                              <span class="ml-2">Grupo de caminhada MOVA-SE</span>
+                              <span class="ml-2">CAMINHADA</span>
                             </label>
 
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="Mais_saude_RA" onfocus="this.blur()">
-                              <span class="ml-2">Grupo de dor crônica Menos dor mais saúde</span>
+                              <span class="ml-2"> PILATES, MUSCULAÇÃO , FUNCIONAL</span>
                             </label>
 
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="Peso_saudavel_RA" onfocus="this.blur()">
-                              <span class="ml-2">Grupo funcional peso saudável</span>
+                              <span class="ml-2">Modalidade esportiva</span>
                             </label>
+
+                            <label class="flex items-center">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="NDA_RA" onfocus="this.blur()">
+                                <span class="ml-2">Nunca participou das atividades ou grupos acima</span>
+                              </label>
 
                             <label class="flex items-center">
                               <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="Geracao_esporte_RA" onfocus="this.blur()">
-                              <span class="ml-2">Geração Esporte</span>
+                              <span class="ml-2">Outras</span>
                             </label>
 
-                            <label class="flex items-center">
-                              <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" name="atividades_passadas" value="NDA_RA" onfocus="this.blur()">
-                              <span class="ml-2">Nunca participou das atividades ou grupos acima</span>
-                            </label>
+
                           </div>
                         </div>
                       </div>

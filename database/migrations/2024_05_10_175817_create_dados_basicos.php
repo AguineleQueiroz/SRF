@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dados_basicos', function (Blueprint $table) {
-            
+
             $table->id();
 
             //1º tópico: Informações
@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('contato', 20);
 
             $table->date('data_nascimento');
+
+            $table->string('cpf', 20);
 
             $table->string('cartao_sus', 20);
 

@@ -20,10 +20,34 @@
                 @endphp
 
                 @if($user->attention_type != 'Primário' && $user->attention_type != 'Secundário')
-                <br><br>
-                <div class="alert alert-danger" role="alert">
-                    O seu tipo de usuário não pode preencher uma ficha.
-                  </div>
+
+                <form action="/ficha_atendimento" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="tipo_ficha" value="Básica">
+                    <input type="hidden" name="atendimento_id" value="{{$atendimento['id']}}">
+                    <input type="hidden" name="user_id" value="{{$user->id}}">
+
+                    <!-- 5º tópico: Atenção Secundária -->
+                    <div class="border-b border-gray-300 mb-6">
+                        <h2 class="text-lg font-bold mb-2">Sessão exclusiva para atenção Básica</h2>
+                        <br>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-bold" for="tipo_especializacao">Tipo de Especialização:</label>
+                            <input class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"
+                            name="tipo_especializacao" id="tipo_especializacao" type="text" placeholder="Digite a especialização do paciente" maxlength="15" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-bold" for="descricao_especialidade">Descrição da Especialização:</label>
+                            <textarea class="shadow appearance-none border rounded w-3/4 h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="descricao_especialidade" id="descricao_especialidade" placeholder="Digite a Descrição da Especialidade" required>{{ old('descricao_especialidade') }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button type="submit" id="btnNext" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg" style="background-color: #186f65; box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.5);">Salvar</button>
+                    </div>
+                </form>
                 @endif
 
                 @if($user->attention_type == 'Primário')
@@ -31,7 +55,7 @@
                 <form action="/ficha_atendimento" method="POST">
                     @csrf
 
-                    <input type="hidden" name="atendimento_id" value="">
+                    <input type="hidden" name="atendimento_id" value="{{$atendimento['id']}}">
                     <input type="hidden" name="tipo_ficha" value="Primário">
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
@@ -107,24 +131,28 @@
             <div class="grid grid-cols-1 gap-4">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_movase" name="atividades[]" onfocus="this.blur()" value="Mova_se">
-                    <span class="ml-2">Grupo de caminhada MOVA-SE</span>
+                    <span class="ml-2">CAMINHADA</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_mdms" name="atividades[]" onfocus="this.blur()" value="Menos_dor_mais_saude">
-                    <span class="ml-2">Grupo de dor crônica Menos dor mais saúde</span>
+                    <span class="ml-2"> PILATES, MUSCULAÇÃO , FUNCIONAL</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_peso" name="atividades[]" onfocus="this.blur()" value="Peso_saudavel">
-                    <span class="ml-2">Grupo funcional peso saudável</span>
-                </label>
-                <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_geracao" name="atividades[]" onfocus="this.blur()" value="Geracao_esporte">
-                    <span class="ml-2">Geração Esporte</span>
+                    <span class="ml-2">Modalidade esportiva</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_nda" name="atividades[]" onfocus="this.blur()" value="NDA">
                     <span class="ml-2">Não participa de nenhuma atividade ou grupo</span>
                 </label>
+
+                <label class="flex items-center">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_geracao" name="atividades[]" onfocus="this.blur()" value="Geracao_esporte" onchange="toggleField(this, 'geracao_justificativa')">
+                    <span class="ml-2">Outras</span>
+                </label>
+                <textarea id="geracao_justificativa" name="justificativas[geracao_esporte]" class="hidden shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-y" placeholder="Explique o motivo"></textarea>
+
+
             </div>
         </div>
     </div>
@@ -136,24 +164,26 @@
             <div class="grid grid-cols-1 gap-4">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_movase" name="atividades_passadas[]" onfocus="this.blur()" value="Mova_se_RA">
-                    <span class="ml-2">Grupo de caminhada MOVA-SE</span>
+                    <span class="ml-2">CAMINHADA</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_mdms" name="atividades_passadas[]" onfocus="this.blur()" value="Mais_saude_RA">
-                    <span class="ml-2">Grupo de dor crônica Menos dor mais saúde</span>
+                    <span class="ml-2"> PILATES, MUSCULAÇÃO , FUNCIONAL</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_peso" name="atividades_passadas[]" onfocus="this.blur()" value="Peso_saudavel_RA">
-                    <span class="ml-2">Grupo funcional peso saudável</span>
-                </label>
-                <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_geracao" name="atividades_passadas[]" onfocus="this.blur()" value="Geracao_esporte_RA">
-                    <span class="ml-2">Geração Esporte</span>
+                    <span class="ml-2">Modalidade esportiva</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_npa" name="atividades_passadas[]" onfocus="this.blur()" value="NDA_RA">
                     <span class="ml-2">Nunca participou das atividades ou grupos acima</span>
                 </label>
+                <label class="flex items-center">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_geracao" name="atividades_passadas[]" onfocus="this.blur()" value="Geracao_esporte_RA" onchange="toggleField(this, 'passadas_geracao_justificativa')">
+                    <span class="ml-2">Outras</span>
+                </label>
+                <textarea id="passadas_geracao_justificativa" name="justificativas[geracao_esporte_RA]" class="hidden shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-y" placeholder="Explique o motivo"></textarea>
+
             </div>
         </div>
     </div>
@@ -305,5 +335,27 @@
         checkboxes.forEach((item) => {
             if (item !== checkbox) item.checked = false;
         });
+    }
+</script>
+
+<script>
+    function toggleField(checkbox, targetId) {
+        let target = document.getElementById(targetId);
+        if (checkbox.checked) {
+            target.classList.remove('hidden');
+        } else {
+            target.classList.add('hidden');
+        }
+    }
+</script>
+
+<script>
+    function toggleField(checkbox, targetId) {
+        let target = document.getElementById(targetId);
+        if (checkbox.checked) {
+            target.classList.remove('hidden');
+        } else {
+            target.classList.add('hidden');
+        }
     }
 </script>

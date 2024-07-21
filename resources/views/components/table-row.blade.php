@@ -24,6 +24,9 @@
             {{ $atendimento['nome'] }}
         </td>
         <td class="col w-1/5 px-4 py-2 text-center align-middle">
+            {{ $atendimento['cpf'] }}
+        </td>
+        <td class="col w-1/5 px-4 py-2 text-center align-middle">
             {{ $atendimento['cartao_sus'] }}
         </td>
         <td class=" date col w-1/5 px-4 py-2 text-center align-middle">

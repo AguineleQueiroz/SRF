@@ -82,6 +82,9 @@
                                     Nome
                                 </th>
                                 <th scope="col" class="w-1/5 px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    CPF
+                                </th>
+                                <th scope="col" class="w-1/5 px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Identificação SUS
                                 </th>
                                 <th scope="col" class="w-1/5 px-20 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -266,6 +269,7 @@
 
             document.getElementById('contato').value = atendimento.contato;
             document.getElementById('data-nascimento').value = atendimento.data_nascimento;
+            document.getElementById('cpf').value = atendimento.cpf;
             document.getElementById('cartao-sus').value = atendimento.cartao_sus;
             document.getElementById('endereco').value = atendimento.endereco;
             document.getElementById('data-cadastro').value = atendimento.data_cadastro;

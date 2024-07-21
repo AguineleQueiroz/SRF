@@ -75,6 +75,12 @@
                                        value="{{ $atendimentos[0]['cartao_sus'] ?? '' }}">
                             </div>
                             <div class="mb-4">
+                                <label class="block text-sm font-bold" for="cpf">Número de CPF:</label>
+                                <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"
+                                       name="cpf" id="cpf" type="text" placeholder="Digite o número do CPF" maxlength="15" required
+                                       value="{{ $atendimentos[0]['cpf'] ?? '' }}">
+                            </div>
+                            <div class="mb-4">
                                 <label class="block text-sm font-bold" for="endereco">Endereço:</label>
                                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                        name="endereco" id="endereco" type="text" placeholder="Digite seu endereço"
@@ -244,6 +250,9 @@
 
     const contatoInput = document.getElementById('contato');
     allowOnlyNumbers(contatoInput);
+
+    const cpfInput = document.getElementById('cpf');
+    allowOnlyNumbers(cpfInput);
 
     const cartaoSusInput = document.getElementById('cartao_sus');
     allowOnlyNumbers(cartaoSusInput);

@@ -33,9 +33,14 @@
         name="data_nascimento" id="data-nascimento" type="date" placeholder="DD/MM/AAAA" required>
         </div>
         <div class="mb-4">
-        <label class="block text-sm font-bold" for="cartao_sus">Número de Cartão SUS:</label>
-        <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"
-        name="cartao_sus" id="cartao-sus" type="number" placeholder="Digite o número do cartão SUS" maxlength="15" required>
+            <label class="block text-sm font-bold" for="cpf">Número de CPF:</label>
+            <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"
+            name="cpf" id="cartao-sus" type="text" placeholder="Digite o número do CPF" maxlength="15" required>
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-bold" for="cartao_sus">Número de Cartão SUS:</label>
+            <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-field"
+            name="cartao_sus" id="cartao-sus" type="number" placeholder="Digite o número do cartão SUS" maxlength="15" required>
         </div>
         <div class="mb-4">
         <label class="block text-sm font-bold" for="endereco">Endereço:</label>
