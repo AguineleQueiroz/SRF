@@ -123,12 +123,12 @@
             <div class="grid grid-cols-1 gap-4">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_movase" name="atividades" value="Mova_se" onfocus="this.blur()" required>
-                    <span class="ml-2">CAMINHADA</span>
+                    <span class="ml-2">Caminhada</span>
                 </label>
 
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_mdms" name="atividades" value="Menos_dor_mais_saude" onfocus="this.blur()" required>
-                    <span class="ml-2"> PILATES, MUSCULAÇÃO , FUNCIONAL</span>
+                    <span class="ml-2"> Pilates, Musculação, Funcional</span>
                 </label>
 
                 <label class="flex items-center">
@@ -163,7 +163,7 @@
 
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_mdms" name="atividades_passadas" value="Mais_saude_RA" onfocus="this.blur()" required>
-                    <span class="ml-2"> PILATES, MUSCULAÇÃO , FUNCIONAL</span>
+                    <span class="ml-2"> Pilates, Musculação, Funcional</span>
                 </label>
 
                 <label class="flex items-center">

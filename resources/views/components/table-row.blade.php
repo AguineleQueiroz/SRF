@@ -26,9 +26,7 @@
         <td class="col w-1/5 px-4 py-2 text-center align-middle">
             {{ $atendimento['cpf'] }}
         </td>
-        <td class="col w-1/5 px-4 py-2 text-center align-middle">
-            {{ $atendimento['cartao_sus'] }}
-        </td>
+
         <td class=" date col w-1/5 px-4 py-2 text-center align-middle">
              {{ date('d/m/Y', strtotime($atendimento['data_cadastro'])) }}
         </td>
@@ -173,14 +171,14 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <a href="/listar_fichas_paciente/{{ $atendimento['id'] }}" target="_blank">
+                                <a href="/listar_fichas_paciente/{{ $atendimento['atendimento_id'] }}" target="_blank">
                                     <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65; white-space: nowrap;">Listar Fichas do Paciente</button>
                                 </a>
                             </div>
                             <div class="col">
                                 <form action="{{ route('encaminhar') }}" method="post">
                                     @csrf
-                                    <input type="hidden" name="atendimento_id" value="{{ $atendimento['id'] }}">
+                                    <input type="hidden" name="atendimento_id" value="{{ $atendimento['atendimento_id'] }}">
                                     <div class="flex justify-end items-center">
                                         <select name="encaminhamento" class="icon cursor-pointer mr-2 border border-gray-300 bg-white text-#186f65 hover:text-green-800 font-bold py-2 px-5 rounded-lg shadow-lg" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-right: 10px;">
                                             <option value="Primário" @if($atendimento['encaminhamento'] == 'Primário') selected @endif>Primário</option>

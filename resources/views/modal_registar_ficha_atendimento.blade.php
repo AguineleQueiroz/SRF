@@ -131,11 +131,11 @@
             <div class="grid grid-cols-1 gap-4">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_movase" name="atividades[]" onfocus="this.blur()" value="Mova_se">
-                    <span class="ml-2">CAMINHADA</span>
+                    <span class="ml-2">Caminhada</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_mdms" name="atividades[]" onfocus="this.blur()" value="Menos_dor_mais_saude">
-                    <span class="ml-2"> PILATES, MUSCULAÇÃO , FUNCIONAL</span>
+                    <span class="ml-2"> Pilates, Musculação, Funcional</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="atividade_peso" name="atividades[]" onfocus="this.blur()" value="Peso_saudavel">
@@ -164,11 +164,11 @@
             <div class="grid grid-cols-1 gap-4">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_movase" name="atividades_passadas[]" onfocus="this.blur()" value="Mova_se_RA">
-                    <span class="ml-2">CAMINHADA</span>
+                    <span class="ml-2">Caminhada</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_mdms" name="atividades_passadas[]" onfocus="this.blur()" value="Mais_saude_RA">
-                    <span class="ml-2"> PILATES, MUSCULAÇÃO , FUNCIONAL</span>
+                    <span class="ml-2"> Pilates, Musculação, Funcional</span>
                 </label>
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500 shadow-md" id="passadas_peso" name="atividades_passadas[]" onfocus="this.blur()" value="Peso_saudavel_RA">

@@ -41,7 +41,7 @@ class AtendimentoController extends Controller
             //4º tópico: Nível de prioridade
             'prioridade' => 'required|in:alta,media,baixa',
             //Adicione aqui
-            'tipo_ficha' => 'required',
+            // 'tipo_ficha' => 'required',
             //Primária
             //5º tópico: Atenção Primária
             'dor' => 'nullable',
@@ -302,6 +302,7 @@ class AtendimentoController extends Controller
 
 public function salvarDados(Request $request)
 {
+    // return $request;
 
     try {
         $checkbox = [
@@ -333,7 +334,6 @@ public function salvarDados(Request $request)
 
         list($dados_basicos, $atendimento_primario, $atendimento_secundario) = $this->getDadosAtendimentos($atendimento);
 
-        return 1;
         // Adicionar o nome do usuário logado aos dados básicos
         $dados_basicos['responsavel_cadastro'] = Auth::user()->name;
 
@@ -372,23 +372,26 @@ public function salvarDados(Request $request)
         }
 
         // Verifique o tipo de ficha e salve os dados de acordo
-        if ($atendimento['tipo_ficha'] === 'Básica') {
-            $dadosbasicos = AtendimentoBasico::create($dados_basicos);
+        // if (Auth::user()->attention_type === 'Básica') {
+        //     $dadosbasicos = AtendimentoBasico::create($dados_basicos);
 
-            $arr = [
-                'user_id' => Auth::id(),
-                'tb_dados_basicos_id' => $dadosbasicos->id,
-            ];
-        } else {
+        //     $arr = [
+        //             'user_id' => Auth::id(),
+        //             'tb_dados_basicos_id' => $dadosbasicos->id,
+        //     ];
+        // } else {
             $primario = AtendimentoPrimario::create($atendimento_primario);
             $secundario = AtendimentoSecundario::create($atendimento_secundario);
+
+            $dadosbasicos = DadosBasicos::create($dados_basicos);
 
             $arr = [
                 'user_id' => Auth::id(),
                 'tb_atendimento_primario_id' => $primario->id ?? $dados_basicos->id,
                 'tb_atendimento_secundario_id' => $secundario->id ?? $dados_basicos->id,
+                'tb_dados_basicos_id' => $dadosbasicos->id,
             ];
-        }
+        // }
 
         Atendimento::create($arr);
 

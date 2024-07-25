@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Atendimento;
 use App\Models\FichaAtendimento;
 use App\Models\MotivoDescricao;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class FichaAtendimentoController extends Controller
 
     public function store(Request $request)
 {
+    // return $request;
     // Validação básica
     $request->validate([
         'tipo_ficha' => 'required|in:Primário,Secundário,Básica',
@@ -61,6 +63,7 @@ class FichaAtendimentoController extends Controller
 
     $data = [];
 
+
     // Definir os campos conforme o tipo de ficha
     if ($request->input('tipo_ficha') === 'Primário') {
         $data = $this->handlePrimarioFields($request);
@@ -70,6 +73,7 @@ class FichaAtendimentoController extends Controller
         $data = $this->handleBasicaFields($request);
     }
 
+    // return $data;
     // Criação do registro com os campos tratados
     $fichaAtendimento = FichaAtendimento::create($data);
 
@@ -92,9 +96,11 @@ class FichaAtendimentoController extends Controller
 
 private function handlePrimarioFields(Request $request)
 {
+    $atendimento_id = Atendimento::where('tb_atendimento_secundario_id', $request->atendimento_id)->first()->id;
+
     return [
         'tipo_ficha' => $request->tipo_ficha,
-        'atendimento_id' => $request->atendimento_id,
+        'atendimento_id' => $atendimento_id,
         'user_id' => $request->user_id,
         'motivos' => json_encode($request->input('motivos', [])),
         'queixa' => $request->input('queixa', null),
@@ -110,9 +116,12 @@ private function handlePrimarioFields(Request $request)
 
 private function handleSecundarioFields(Request $request)
 {
+
+    $atendimento_id = Atendimento::where('tb_atendimento_secundario_id', $request->atendimento_id)->first()->id;
+
     return [
         'tipo_ficha' => $request->tipo_ficha,
-        'atendimento_id' => $request->atendimento_id,
+        'atendimento_id' => $atendimento_id,
         'user_id' => $request->user_id,
         'funcional_condicao' => $request->input('funcional_condicao', null),
         'tratamento_ofertado' => $request->input('tratamento_ofertado', null),
@@ -128,9 +137,11 @@ private function handleSecundarioFields(Request $request)
 
 private function handleBasicaFields(Request $request)
 {
+
+    $atendimento_id = Atendimento::where('tb_atendimento_secundario_id', $request->atendimento_id)->first()->id;
     return [
         'tipo_ficha' => $request->tipo_ficha,
-        'atendimento_id' => $request->atendimento_id,
+        'atendimento_id' => $atendimento_id,
         'user_id' => $request->user_id,
         'tipo_especializacao' => $request->input('tipo_especializacao', null),
         'descricao_especialidade' => $request->input('descricao_especialidade', null),
