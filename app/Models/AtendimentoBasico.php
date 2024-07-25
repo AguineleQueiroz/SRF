@@ -9,6 +9,8 @@ class AtendimentoBasico extends Model
 {
     use HasFactory;
 
+    protected $table = "atendimentos_basicos";
+
     protected $fillable = [
         'tipo_especializacao',
         'descricao_especialidade',

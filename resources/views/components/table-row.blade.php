@@ -173,7 +173,7 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <a href="/listar_fichas_paciente/{{ $atendimento['id'] }}" target="_blank">
+                                <a href="/listar_fichas_paciente/{{ $atendimento['atendimento_id'] }}" target="_blank">
                                     <button type="button" class="icon text-white font-bold py-2 px-4 rounded shadow-md" style="background-color: #186f65; white-space: nowrap;">Listar Fichas do Paciente</button>
                                 </a>
                             </div>
