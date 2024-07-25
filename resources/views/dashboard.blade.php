@@ -84,9 +84,7 @@
                                 <th scope="col" class="w-1/5 px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     CPF
                                 </th>
-                                <th scope="col" class="w-1/5 px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Identificação SUS
-                                </th>
+
                                 <th scope="col" class="w-1/5 px-20 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Data
                                 </th>
