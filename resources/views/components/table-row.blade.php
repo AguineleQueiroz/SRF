@@ -91,6 +91,7 @@
                                 @endphp
                                 <p class="m-0">Idade: {{ $age }} anos</p>
                                 <p class="m-0">Endereço: {{$atendimento['endereco']}}</p>
+                                <p class="m-0">Cartão SUS: {{$atendimento['cartao_sus']}}</p>
                             </div>
                             <div class="col-6 d-flex flex-column">
                                 <p class="m-0">Contato: {{$atendimento['contato']}}</p>
