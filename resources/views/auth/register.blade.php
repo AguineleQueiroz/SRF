@@ -26,7 +26,7 @@
         <!-- Número de Registro -->
         <div class="mt-4">
             <x-input-label for="num_registro" :value="__('Número de Registro')" />
-            <x-text-input id="num_registro" class="block mt-1 w-full" type="text" name="num_registro" :value="old('num_registro')" maxlength="7" required/>
+            <x-text-input id="num_registro" class="block mt-1 w-full" type="text" name="num_registro" :value="old('num_registro')" maxlength="8" required/>
             <x-input-error :messages="$errors->get('num_registro')" class="mt-2" />
         </div>
 
